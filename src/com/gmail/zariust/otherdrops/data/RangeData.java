@@ -69,14 +69,12 @@ public class RangeData implements Data {
         return "RANGE-" + range.toString();
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void setOn(BlockState state) {
         denullifyVal();
         state.setData(new MaterialData(state.getType(), val.byteValue()));
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void setOn(Entity mob, Player witness) {
         denullifyVal();

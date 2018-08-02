@@ -20,14 +20,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.DyeColor;
-import org.bukkit.GrassSpecies;
 import org.bukkit.Material;
-import org.bukkit.SandstoneType;
-import org.bukkit.TreeSpecies;
-import org.bukkit.material.Step;
 
-import com.gmail.zariust.otherdrops.ItemIDReplacer;
 import com.gmail.zariust.otherdrops.Log;
 
 public final class CommonMaterial {
@@ -225,7 +219,6 @@ public final class CommonMaterial {
         ALIASES = Collections.unmodifiableMap(aMap);
     }
 
-    @SuppressWarnings("deprecation")
 	public static Material matchMaterial(String mat) {
         // Aliases defined here override those in Material; the only example
         // here is WOODEN_DOOR
@@ -239,9 +232,7 @@ public final class CommonMaterial {
         mat = split[0];
         
         if (mat.matches("[0-9]+")) {
-            Log.logWarning("Error while parsing: " + mat + ". Support for numerical IDs has been dropped! Locating item ID...");
-        	Log.logWarning("Please replace the occurence of '" + mat + "' with '" + Material.getMaterial(Integer.parseInt(mat)).toString() + "'");
-        	ItemIDReplacer.replaceFile(Integer.parseInt(mat), Material.getMaterial(Integer.parseInt(mat)).toString());
+            Log.logWarning("Error while parsing: " + mat + ". Support for numerical IDs has been dropped!");
         }
         // CommonMaterial material = enumValue(CommonMaterial.class, mat);
         mat = mat.toLowerCase().replaceAll("[\\s-_]", "");
@@ -268,204 +259,19 @@ public final class CommonMaterial {
         return matchedMat;
     }
 
-    // Colors
-    @SuppressWarnings("deprecation")
-	public static int getWoolColor(DyeColor color) {
-        return color.getWoolData();
-    }
-
-    @SuppressWarnings("deprecation")
-	public static int getDyeColor(DyeColor color) {
-        return color.getDyeData();
-    }
-
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
     public static Integer parseBlockOrItemData(Material mat, String state)
             throws IllegalArgumentException {
+    	
         Log.logInfo("Checking block data for " + mat.toString() + "@" + state, Verbosity.HIGH);
+        
         state = state.toUpperCase();
         if (state.equalsIgnoreCase("this"))
             return -1;
-        switch (mat) {
-        case LOG:
-        case LEAVES:
-        case SAPLING:
-        case WOOD:
-        case WOOD_STEP:
-        case WOOD_DOUBLE_STEP:
-            TreeSpecies species = TreeSpecies.valueOf(state);
-            if (species != null)
-                return (int) species.getData();
-            break;
-        case WOOL:
-        case STAINED_GLASS:
-        case STAINED_GLASS_PANE:
-        case STAINED_CLAY:
-            if (state.contains("!")) {
-                for (String statePart : state.split("!")) {
-                    try {
-                    if (DyeColor.valueOf(statePart) != null) {
-                        state = statePart;
-                    }
-                    } catch (Exception exception) {}
-                }
-            }
-            if (state.contains("!")) {
-                throw new IllegalArgumentException("Illegal block colour: " + state);
-            }
-            DyeColor wool = DyeColor.valueOf(state);
-            if (wool != null)
-                return getWoolColor(wool);
-            break;
-        case SMOOTH_BRICK:
-            String upper = state.toUpperCase();
-            if (state.equalsIgnoreCase("NORMAL"))
-                return 0;
-            if (state.equalsIgnoreCase("MOSSY"))
-                return 1;
-            if (state.equalsIgnoreCase("CRACKED"))
-                return 2;
-            if (upper.matches("(CIRCLE|CHISELED)"))
-                return 3;
-            Material brick = Material.valueOf(state);
-            if (brick == null)
-                throw new IllegalArgumentException("Unknown material " + state);
-            switch (brick) {
-            case STONE:
-                return 0;
-            case COBBLESTONE:
-                return 2;
-            case MOSSY_COBBLESTONE:
-                return 5;
-            default:
-                throw new IllegalArgumentException("Illegal step material " + state);
-            }
-        case COBBLE_WALL:
-            String upperState = state.toUpperCase();
-            if (upperState.matches("COBBLE(STONE)*"))
-                return 0;
-            if (upperState.matches("MOSS(Y)*(STONE)*"))
-                return 1;
-            break;
-        case DOUBLE_STONE_SLAB2:
-        case STONE_SLAB2:
-            Material step2 = Material.valueOf(state);
-            if (step2 == null)
-                throw new IllegalArgumentException("Unknown material " + state);
-            switch (step2) {
-            case RED_SANDSTONE:
-                return 0;
-            default:
-                throw new IllegalArgumentException("Illegal step material " + state);
-            }
-        case DOUBLE_STEP:
-        case STEP:
-            Material step = Material.valueOf(state);
-            if (step == null)
-                throw new IllegalArgumentException("Unknown material " + state);
-            switch (step) {
-            case STONE:
-                return 0;
-            case SANDSTONE:
-                return 1;
-            case COBBLESTONE:
-                return 3;
-            case BRICK:
-                return 4;
-            case SMOOTH_BRICK:
-                return 5;
-            case NETHER_BRICK:
-                return 6;
-            case QUARTZ:
-            	return 7;
-            default:
-                throw new IllegalArgumentException("Illegal step material " + state);
-            }
-        case LONG_GRASS:
-            GrassSpecies grass = GrassSpecies.valueOf(state);
-            if (grass != null)
-                return (int) grass.getData();
-            break;
-        case SKULL:
-            String upperState2 = state.toUpperCase();
-            if (upperState2.matches("SKELETON"))
-                return 0;
-            if (upperState2.matches("(WITHER|WITHERSKELETON)"))
-                return 1;
-            if (upperState2.matches("ZOMBIE"))
-                return 2;
-            if (upperState2.matches("(HUMAN|PLAYER)"))
-                return 3;
-            if (upperState2.matches("CREEPER"))
-                return 4;
-            break;
-        case SANDSTONE:
-            SandstoneType ssType = SandstoneType.valueOf(state);
-            if (ssType != null)
-                return (int) ssType.getData();
-            break;
-        }
         return null;
     }
 
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
     public static String getBlockOrItemData(Material mat, int data) {
         try {
-            switch (mat) {
-            case LOG:
-            case LEAVES:
-            case SAPLING:
-            case WOOD:
-            case WOOD_STEP:
-            case WOOD_DOUBLE_STEP:
-                // if ((byte)((0x3) & data) == 3) return "JUNGLE";
-                return TreeSpecies.getByData((byte) ((0x3) & data)).toString(); 
-            case WOOL:
-            case STAINED_GLASS:
-            case STAINED_GLASS_PANE:
-            case STAINED_CLAY:
-                return DyeColor.getByDyeData((byte) data).toString();
-            case SMOOTH_BRICK:
-                switch (data) {
-                case 0:
-                    return "NORMAL";
-                case 1:
-                    return "MOSSY";
-                case 2:
-                    return "CRACKED";
-                case 3:
-                    return "CHISELED";
-                }
-            case COBBLE_WALL:
-                switch (data) {
-                case 0:
-                    return "COBBLESTONE";
-                case 1:
-                    return "MOSSSTONE";
-                }
-            case DOUBLE_STEP:
-            case STEP:
-                Step step = new Step(mat, (byte) data);
-                return step.getMaterial().toString();
-            case LONG_GRASS:
-                return GrassSpecies.getByData((byte) data).toString();
-            case SKULL:
-                switch (data) {
-                case 0:
-                    return "SKELETON";
-                case 1:
-                    return "WITHERSKELETON";
-                case 2:
-                    return "ZOMBIE";
-                case 3:
-                    return "HUMAN";
-                case 4:
-                    return "CREEPER";
-                }
-            case SANDSTONE:
-                return SandstoneType.getByData((byte) data).toString();
-            }
-
             if (data > 0)
                 return Integer.toString(data);
             return "";

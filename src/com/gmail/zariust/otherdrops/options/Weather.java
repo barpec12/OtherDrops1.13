@@ -47,20 +47,24 @@ public enum Weather {
         stormy = storm;
     }
 
-    public static Weather match(Biome biome, boolean hasStorm,
-            boolean thundering) {
+    public static Weather match(Biome biome, boolean hasStorm, boolean thundering) {
         if (biome == null)
             biome = Biome.PLAINS;
         switch (biome) {
-        case HELL:
-            return NONE;
-        case SKY:
+        case NETHER:
+        case THE_END:
         case DESERT:
-        case TAIGA:
+            return NONE;
+        case SNOWY_BEACH:
+        case SNOWY_MOUNTAINS:
+        case SNOWY_TAIGA:
+        case SNOWY_TAIGA_HILLS:
+        case SNOWY_TAIGA_MOUNTAINS:
+        case SNOWY_TUNDRA:
+        case ICE_SPIKES:
+        case DEEP_FROZEN_OCEAN:
         case FROZEN_OCEAN:
         case FROZEN_RIVER:
-        case ICE_FLATS:
-        case ICE_MOUNTAINS:
             if (hasStorm)
                 return SNOW;
             return CLEAR;

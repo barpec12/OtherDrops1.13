@@ -112,7 +112,6 @@ public class PlayerSubject extends LivingSubject {
         return tool.getMaterial();
     }
 
-    @SuppressWarnings("deprecation")
 	public Player getPlayer() {
         if (name == null)
             return null;
@@ -121,7 +120,6 @@ public class PlayerSubject extends LivingSubject {
         return agent;
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void damageTool(ToolDamage damage, Random rng) {
         if (damage == null)

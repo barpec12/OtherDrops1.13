@@ -73,7 +73,6 @@ public class EndermanData extends CreatureData {
 
     }
 
-    @SuppressWarnings("deprecation")
 	public static CreatureData parseFromString(String state) {
 
         Log.logInfo("EndermanData: parsing from string.", Verbosity.HIGHEST);
@@ -126,7 +125,6 @@ public class EndermanData extends CreatureData {
      * CreatureData(md);
      */
 
-	@SuppressWarnings("deprecation")
 	@Override
     public String toString() {
         String val = "";

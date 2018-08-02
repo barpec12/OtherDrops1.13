@@ -132,7 +132,6 @@ public class SimpleData implements Data, RangeableData {
         return "";
     }
 
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
     private String get(Material mat) {
         if (mat == null) {
             Log.logWarning(
@@ -144,7 +143,7 @@ public class SimpleData implements Data, RangeableData {
         try {
             switch (mat) {
             // Simple enum-based blocks
-            case CROPS:
+            case WHEAT:
             case CARROT:
             case POTATO:
                 return CropState.getByData((byte) data).toString();
@@ -156,19 +155,23 @@ public class SimpleData implements Data, RangeableData {
             case JACK_O_LANTERN:
                 Pumpkin pumpkin = new Pumpkin(mat, (byte) data);
                 return pumpkin.getFacing().toString();
-            case SIGN_POST:
+            case SIGN:
             case WALL_SIGN:
                 Sign sign = new Sign(mat, (byte) data);
                 return sign.getFacing().toString();
-            case WOOD_STAIRS:
+            case ACACIA_STAIRS:
+            case BIRCH_STAIRS:
+            case DARK_OAK_STAIRS:
+            case JUNGLE_STAIRS:
+            case OAK_STAIRS:
+            case SPRUCE_STAIRS:
             case COBBLESTONE_STAIRS:
                 Stairs stairs = new Stairs(mat, (byte) data);
                 return stairs.getFacing().toString();
             case TORCH:
                 Torch torch = new Torch(mat, (byte) data);
                 return torch.getFacing().toString();
-            case REDSTONE_TORCH_OFF:
-            case REDSTONE_TORCH_ON:
+            case REDSTONE_TORCH:
                 RedstoneTorch invert = new RedstoneTorch(mat, (byte) data);
                 result += invert.getFacing();
                 break;
@@ -186,15 +189,15 @@ public class SimpleData implements Data, RangeableData {
                 result += button.getFacing();
                 break;
             // Pistons (overlaps with previous)
-            case PISTON_BASE:
-            case PISTON_STICKY_BASE:
+            case PISTON:
+            case STICKY_PISTON:
                 PistonBaseMaterial piston = new PistonBaseMaterial(mat,
                         (byte) data);
                 if (piston.isPowered())
                     result += "POWERED/";
                 result += piston.getFacing();
                 break;
-            case PISTON_EXTENSION:
+            case PISTON_HEAD:
                 PistonExtensionMaterial pistonHead = new PistonExtensionMaterial(
                         mat, (byte) data);
                 if (pistonHead.isSticky())
@@ -202,7 +205,7 @@ public class SimpleData implements Data, RangeableData {
                 result += pistonHead.getFacing();
                 break;
             // Rails
-            case RAILS:
+            case RAIL:
                 Rails rail = new Rails(mat, (byte) data);
                 if (rail.isOnSlope())
                     result += "SLOPE/";
@@ -226,51 +229,42 @@ public class SimpleData implements Data, RangeableData {
                 result += detector.getDirection();
                 break;
             // Misc
-            case BED_BLOCK:
-                Bed bed = new Bed(mat, (byte) data);
-                if (bed.isHeadOfBed())
-                    result += "HEAD/";
-                result += bed.getFacing();
-                break;
-            case CAKE_BLOCK:
+            case CAKE:
                 Cake cake = new Cake(mat, (byte) data);
                 result += "EATEN-";
                 result += cake.getSlicesEaten();
                 break;
-            case DIODE_BLOCK_OFF:
-            case DIODE_BLOCK_ON:
+            case REPEATER:
                 Diode diode = new Diode(mat, (byte) data);
                 result += diode.getDelay();
                 result += "/";
                 result += diode.getFacing();
                 break;
-            case TRAP_DOOR:
+            case ACACIA_TRAPDOOR:
+            case BIRCH_TRAPDOOR:
+            case DARK_OAK_TRAPDOOR:
+            case JUNGLE_TRAPDOOR:
+            case OAK_TRAPDOOR:
+            case SPRUCE_TRAPDOOR:
+            case IRON_TRAPDOOR:
                 TrapDoor hatch = new TrapDoor(mat, (byte) data);
                 if (hatch.isOpen())
                     result += "OPEN/";
                 result += hatch.getFacing();
                 break;
-            case WOODEN_DOOR:
-            case IRON_DOOR_BLOCK:
+            case ACACIA_DOOR:
+            case BIRCH_DOOR:
+            case DARK_OAK_DOOR:
+            case JUNGLE_DOOR:
+            case OAK_DOOR:
+            case SPRUCE_DOOR:
+            case IRON_DOOR:
                 Door door = new Door(mat, (byte) data);
                 if (door.isTopHalf())
                     result += "TOP/";
                 if (door.isOpen())
                     result += "OPEN/";
                 result += door.getFacing();
-                break;
-            case MONSTER_EGGS:
-                switch (data) {
-                case 0:
-                    result = "STONE";
-                    break;
-                case 1:
-                    result = "COBBLESTONE";
-                    break;
-                case 2:
-                    result = "SMOOTH_BRICK";
-                    break;
-                }
                 break;
             // Paintings
             case PAINTING:
@@ -314,24 +308,13 @@ public class SimpleData implements Data, RangeableData {
         state = state.toUpperCase();
         int ret = -1;
         switch (mat) {
-        case LOG:
-        case LEAVES:
-        case SAPLING:
-        case WOOL:
-        case DOUBLE_STEP:
-        case STEP:
-        case LONG_GRASS:
-        case SMOOTH_BRICK:
-        case SKULL:
-        case WOOD_STEP:
-        case WOOD_DOUBLE_STEP:
         case SANDSTONE:
-        case COBBLE_WALL:
+        case COBBLESTONE_WALL:
             Integer data = CommonMaterial.parseBlockOrItemData(mat, state);
             if (data != null)
                 ret = data;
             break;
-        case CROPS:
+        case WHEAT:
         case CARROT:
         case POTATO:
             CropState crops = CropState.valueOf(state);
@@ -350,13 +333,18 @@ public class SimpleData implements Data, RangeableData {
             pumpkin.setFacingDirection(BlockFace.valueOf(state));
             ret = pumpkin.getData();
             break;
-        case SIGN_POST: // TODO: Should we allow sign text matching?
+        case SIGN: // TODO: Should we allow sign text matching?
         case WALL_SIGN:
             Sign sign = new Sign(mat);
             sign.setFacingDirection(BlockFace.valueOf(state));
             ret = sign.getData();
             break;
-        case WOOD_STAIRS:
+        case ACACIA_STAIRS:
+        case BIRCH_STAIRS:
+        case DARK_OAK_STAIRS:
+        case JUNGLE_STAIRS:
+        case OAK_STAIRS:
+        case SPRUCE_STAIRS:
         case COBBLESTONE_STAIRS:
             Stairs stairs = new Stairs(mat);
             stairs.setFacingDirection(BlockFace.valueOf(state));
@@ -367,8 +355,8 @@ public class SimpleData implements Data, RangeableData {
             torch.setFacingDirection(BlockFace.valueOf(state));
             ret = torch.getData();
             break;
-        case REDSTONE_TORCH_OFF:
-        case REDSTONE_TORCH_ON:
+        case REDSTONE_TORCH:
+        case REDSTONE_WALL_TORCH:
             RedstoneTorch invert = new RedstoneTorch(mat);
             invert.setFacingDirection(BlockFace.valueOf(state));
             ret = invert.getData();
@@ -395,8 +383,8 @@ public class SimpleData implements Data, RangeableData {
             ret = button.getData();
             break;
         // Pistons (overlaps with previous)
-        case PISTON_BASE:
-        case PISTON_STICKY_BASE:
+        case PISTON:
+        case STICKY_PISTON:
             PistonBaseMaterial piston = new PistonBaseMaterial(mat);
             for (String arg : state.split("/")) {
                 if (arg.equals("POWERED"))
@@ -406,7 +394,7 @@ public class SimpleData implements Data, RangeableData {
             }
             ret = piston.getData();
             break;
-        case PISTON_EXTENSION:
+        case PISTON_HEAD:
             PistonExtensionMaterial pistonHead = new PistonExtensionMaterial(
                     mat);
             for (String arg : state.split("/")) {
@@ -418,7 +406,7 @@ public class SimpleData implements Data, RangeableData {
             ret = pistonHead.getData();
             break;
         // Rails
-        case RAILS:
+        case RAIL:
             Rails rail = new Rails(mat);
             {
                 boolean slope = false;
@@ -469,17 +457,7 @@ public class SimpleData implements Data, RangeableData {
             ret = detector.getData();
             break;
         // Misc
-        case BED_BLOCK:
-            Bed bed = new Bed(mat);
-            for (String arg : state.split("/")) {
-                if (arg.equals("HEAD"))
-                    bed.setHeadOfBed(true);
-                else
-                    bed.setFacingDirection(BlockFace.valueOf(arg));
-            }
-            ret = bed.getData();
-            break;
-        case CAKE_BLOCK:
+        case CAKE:
             Cake cake = new Cake(mat);
             if (state.startsWith("EATEN-"))
                 cake.setSlicesEaten(Integer.parseInt(state.substring(6)));
@@ -489,8 +467,7 @@ public class SimpleData implements Data, RangeableData {
                 cake.setSlicesEaten(0);
             ret = cake.getData();
             break;
-        case DIODE_BLOCK_OFF:
-        case DIODE_BLOCK_ON:
+        case REPEATER:
             Diode diode = new Diode(mat);
             for (String arg : state.split("/")) {
                 if (arg.matches("[1-4]"))
@@ -500,7 +477,13 @@ public class SimpleData implements Data, RangeableData {
             }
             ret = diode.getData();
             break;
-        case TRAP_DOOR:
+        case ACACIA_TRAPDOOR:
+        case BIRCH_TRAPDOOR:
+        case DARK_OAK_TRAPDOOR:
+        case JUNGLE_TRAPDOOR:
+        case OAK_TRAPDOOR:
+        case SPRUCE_TRAPDOOR:
+        case IRON_TRAPDOOR:
             TrapDoor hatch = new TrapDoor(mat);
             for (String arg : state.split("/")) {
                 // TODO: Should use a setOpen method, but there isn't one...
@@ -511,8 +494,13 @@ public class SimpleData implements Data, RangeableData {
             }
             ret = hatch.getData();
             break;
-        case WOODEN_DOOR:
-        case IRON_DOOR_BLOCK:
+        case ACACIA_DOOR:
+        case BIRCH_DOOR:
+        case DARK_OAK_DOOR:
+        case JUNGLE_DOOR:
+        case OAK_DOOR:
+        case SPRUCE_DOOR:
+        case IRON_DOOR:
             Door door = new Door(mat);
             for (String arg : state.split("/")) {
                 if (arg.equals("OPEN"))
@@ -524,32 +512,12 @@ public class SimpleData implements Data, RangeableData {
             }
             ret = door.getData();
             break;
-        case MONSTER_EGGS:
-            Material step = CommonMaterial.matchMaterial(state);
-            if (step == null)
-                throw new IllegalArgumentException("Unknown material " + state);
-            switch (step) {
-            case STONE:
-                ret = 0;
-                break;
-            case COBBLESTONE:
-                ret = 1;
-                break;
-            case SMOOTH_BRICK:
-                ret = 2;
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Illegal monster egg material " + state);
-            }
-            break;
         // Tile entities
         case FURNACE:
-        case BURNING_FURNACE:
         case DISPENSER:
         case CHEST:
             return ContainerData.parse(mat, state);
-        case MOB_SPAWNER:
+        case SPAWNER:
             return SpawnerData.parse(state);
         case NOTE_BLOCK:
             return NoteData.parse(state);
@@ -587,19 +555,19 @@ public class SimpleData implements Data, RangeableData {
                             + facing);
                 }
             break;
-        case BOAT:
-        case BOAT_SPRUCE:
-        case BOAT_BIRCH:
-        case BOAT_JUNGLE:
-        case BOAT_ACACIA:
-        case BOAT_DARK_OAK:
+        case OAK_BOAT:
+        case SPRUCE_BOAT:
+        case BIRCH_BOAT:
+        case JUNGLE_BOAT:
+        case ACACIA_BOAT:
+        case DARK_OAK_BOAT:
         case MINECART:
-        case COMMAND_MINECART:
-        case EXPLOSIVE_MINECART:
-        case POWERED_MINECART:
+        case COMMAND_BLOCK_MINECART:
+        case TNT_MINECART:
+        case FURNACE_MINECART:
             return VehicleData.parse(mat, state);
         case HOPPER_MINECART:
-        case STORAGE_MINECART:
+        case CHEST_MINECART:
             return ContainerData.parse(mat, state);
         default:
             if (!state.isEmpty())

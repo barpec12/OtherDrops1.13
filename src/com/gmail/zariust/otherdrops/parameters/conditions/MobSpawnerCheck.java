@@ -79,7 +79,7 @@ public class MobSpawnerCheck extends Condition {
                 for (z2 = 0 - radius; z2 <= radius; z2++) {
                     Block block = world.getBlockAt(x1 + x2, y1 + y2, z1 + z2);
 
-                    if (block.getType() == Material.MOB_SPAWNER)
+                    if (block.getType() == Material.SPAWNER)
                         return true;
                 }
             }

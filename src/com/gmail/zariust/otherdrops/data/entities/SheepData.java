@@ -143,7 +143,7 @@ public class SheepData extends CreatureData {
                 	color = DyeColor.GRAY;
                 
                 else if (subColor.contains("!silver"))
-                	color = DyeColor.SILVER;
+                	color = DyeColor.LIGHT_GRAY;
                 
                 else if (subColor.contains("!cyan"))
                 	color = DyeColor.CYAN;

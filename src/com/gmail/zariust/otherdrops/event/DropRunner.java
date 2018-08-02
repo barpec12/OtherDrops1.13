@@ -199,15 +199,15 @@ public class DropRunner implements Runnable {
                     currentEvent.getVictim().remove();
             } 
             
-            if(getsBlockBeingChanged.getMaterial() == Material.SOIL && 
-            		(tempReplace.getMaterial() == Material.CROPS || tempReplace.getMaterial() == Material.BEETROOT_BLOCK 
+            if(getsBlockBeingChanged.getMaterial() == Material.FARMLAND && 
+            		(tempReplace.getMaterial() == Material.WHEAT | tempReplace.getMaterial() == Material.BEETROOTS 
             		|| tempReplace.getMaterial() == Material.CARROT || tempReplace.getMaterial() == Material.POTATO 
             		|| tempReplace.getMaterial() == Material.MELON_STEM || tempReplace.getMaterial() == Material.PUMPKIN_STEM)) {
             	ifFarmlandUpOneBlock = new BlockTarget(toReplace.getLocation().add(0, 1, 0).getBlock());
             	ifFarmlandUpOneBlock.setTo(tempReplace);
             }
 
-            if(getsBlockBeingChanged.getMaterial() == Material.SOUL_SAND && (tempReplace.getMaterial() == Material.NETHER_WARTS)) {
+            if(getsBlockBeingChanged.getMaterial() == Material.SOUL_SAND && (tempReplace.getMaterial() == Material.NETHER_WART)) {
             	ifFarmlandUpOneBlock = new BlockTarget(toReplace.getLocation().add(0, 1, 0).getBlock());
             	ifFarmlandUpOneBlock.setTo(tempReplace);
             }

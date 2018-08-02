@@ -126,38 +126,33 @@ public class PlayerConsoleWrapper implements ConsoleCommandSender {
 
     @Override
     public void sendMessage(String[] arg0) {
-        // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void abandonConversation(Conversation arg0) {
-        // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void acceptConversationInput(String arg0) {
-        // TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not supported yet.");
 
     }
 
     @Override
     public boolean beginConversation(Conversation arg0) {
-        // TODO Auto-generated method stub
-        return false;
+		throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean isConversing() {
-        // TODO Auto-generated method stub
-        return false;
+		throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void sendRawMessage(String arg0) {
-        // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -166,4 +161,10 @@ public class PlayerConsoleWrapper implements ConsoleCommandSender {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public Spigot spigot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

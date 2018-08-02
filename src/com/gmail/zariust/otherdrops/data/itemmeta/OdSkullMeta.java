@@ -23,35 +23,9 @@ public class OdSkullMeta extends OdItemMeta {
         if (owner == null)
             return null;
         String tempOwner = parseVariables(owner, stack, source);
-        short skullData = 3;
-        SkullType skullType = null;
-        try {
-            skullType = SkullType.valueOf(tempOwner.toUpperCase());
-        } catch (Exception e) {
-            // do nothing
-        }
-        if (skullType != null) {
-            switch (skullType) {
-            case CREEPER:
-                skullData = 4;
-                break;
-            case SKELETON:
-                skullData = 0;
-                break;
-            case WITHER:
-                skullData = 1;
-                break;
-            case ZOMBIE:
-                skullData = 2;
-                break;
-            default:
-                break;
-            }
-        }
 
         SkullMeta meta = (SkullMeta) stack.getItemMeta();
         meta.setOwningPlayer(Bukkit.getOfflinePlayer(tempOwner));
-        stack.setDurability(skullData);
         stack.setItemMeta(meta);
         return stack;
     }

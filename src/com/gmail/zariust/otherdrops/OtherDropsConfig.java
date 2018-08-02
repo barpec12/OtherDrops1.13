@@ -1185,7 +1185,6 @@ public class OtherDropsConfig {
         return prop;
     }
 
-    @SuppressWarnings("deprecation")
 	private BlockTarget parseReplacement(ConfigurationNode node) {
         String blockName = getStringFrom(node, "replacementblock", "replaceblock", "replace");
         if (blockName == null)
@@ -1195,9 +1194,7 @@ public class OtherDropsConfig {
         String dataStr = split.length > 1 ? split[1] : "";
         Material mat = null;
         if(name.matches("[0-9]+")) {
-            Log.logWarning("Error while parsing: " + name + ". Support for numerical IDs has been dropped! Locating item ID...");
-        	Log.logWarning("Please replace the occurence of '" + name + "' with '" + Material.getMaterial(Integer.parseInt(name)).toString() + "'");
-        	ItemIDReplacer.replaceFile(Integer.parseInt(name), Material.getMaterial(Integer.parseInt(name)).toString());
+            Log.logWarning("Error while parsing: " + name + ". Support for numerical IDs has been dropped!");
         }
         mat = Material.getMaterial(name.toUpperCase());
         if (mat == null) {

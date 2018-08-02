@@ -263,7 +263,7 @@ public class ProjectileAgent implements Agent {
         else if (name.equals("POTION"))
             mat = Material.POTION;
         else if (name.equals("SNOWBALL"))
-            mat = Material.SNOW_BALL;
+            mat = Material.SNOWBALL;
         else if (name.equals("EGG"))
             mat = Material.EGG;
         else if (name.equals("FISH") || name.equals("FISHINGROD"))
@@ -274,6 +274,12 @@ public class ProjectileAgent implements Agent {
             mat = Material.SPECTRAL_ARROW;
         else if (name.equals("TIPPEDARROW"))
             mat = Material.TIPPED_ARROW;
+        else if (name.equals("ENDERPEARL"))
+            mat = Material.ENDER_PEARL;
+        else if (name.equals("WITHERSKULL"))
+            mat = Material.WITHER_SKELETON_SKULL;
+        else if (name.equals("EXPBOTTLE"))
+            mat = Material.EXPERIENCE_BOTTLE;
         else if (name.equals("ANY"))
             mat = null;
         else {

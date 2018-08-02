@@ -45,7 +45,6 @@ public class ContainerData implements Data {
     private boolean       burning, cooking;
     private int           facing;
 
-    @SuppressWarnings("deprecation")
 	public ContainerData(BlockState state) {
         if (state instanceof InventoryHolder) {
             Inventory inventory = ((InventoryHolder) state).getInventory();
@@ -157,17 +156,16 @@ public class ContainerData implements Data {
         String result = "";
         switch (mat) {
         case FURNACE:
-        case BURNING_FURNACE:
             if (burning)
                 result += "BURNING/";
             if (cooking)
                 result += "COOKING/";
             // Fallthrough intentional
         case DISPENSER:
-            @SuppressWarnings("deprecation") FurnaceAndDispenser fd = new FurnaceAndDispenser(mat, (byte) facing);
+            FurnaceAndDispenser fd = new FurnaceAndDispenser(mat, (byte) facing);
             result += fd.getFacing().toString();
             // Fallthrough intentional
-        case STORAGE_MINECART:
+        case CHEST_MINECART:
         case CHEST:
             if (inven == null) {
                 Log.logWarning(
@@ -188,7 +186,6 @@ public class ContainerData implements Data {
         return result;
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void setOn(BlockState state) {
         if (!(state instanceof InventoryHolder)) {
@@ -214,7 +211,6 @@ public class ContainerData implements Data {
             cart.getInventory().addItem(new ItemStack(item, 1));
     }
 
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
     public static Data parse(Material mat, String state)
             throws IllegalArgumentException {
         if (state == null || state.isEmpty())
@@ -223,7 +219,6 @@ public class ContainerData implements Data {
         List<String> args = Arrays.asList(state.split("/"));
         switch (mat) {
         case FURNACE:
-        case BURNING_FURNACE:
             ret.burning = args.contains("BURNING");
             ret.cooking = args.contains("COOKING");
             // Fallthrough intentional
@@ -232,7 +227,7 @@ public class ContainerData implements Data {
             fd.setFacingDirection(BlockFace.valueOf(state));
             ret.facing = fd.getData();
             // Fallthrough intentional
-        case STORAGE_MINECART:
+        case CHEST_MINECART:
         case CHEST:
             for (String arg : args)
                 ret.inven.add(Material.getMaterial(arg));

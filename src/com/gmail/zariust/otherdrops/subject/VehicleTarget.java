@@ -160,22 +160,22 @@ public class VehicleTarget implements Target {
         Data data = null;
         try {
             switch (type) {
-            case BOAT:
-            case BOAT_SPRUCE:
-            case BOAT_BIRCH:
-            case BOAT_JUNGLE:
-            case BOAT_ACACIA:
-            case BOAT_DARK_OAK:
+            case OAK_BOAT:
+            case SPRUCE_BOAT:
+            case BIRCH_BOAT:
+            case JUNGLE_BOAT:
+            case ACACIA_BOAT:
+            case DARK_OAK_BOAT:
             case MINECART:
                 data = VehicleData.parse(type, state);
                 break;
             case HOPPER_MINECART:
-            case STORAGE_MINECART:
+            case CHEST_MINECART:
                 data = ContainerData.parse(type, state);
                 break;
-            case COMMAND_MINECART:
-            case EXPLOSIVE_MINECART:
-            case POWERED_MINECART:
+            case COMMAND_BLOCK_MINECART:
+            case TNT_MINECART:
+            case FURNACE_MINECART:
             case PAINTING:
                 data = SimpleData.parse(type, state);
                 break;

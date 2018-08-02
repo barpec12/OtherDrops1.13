@@ -19,6 +19,7 @@ package com.gmail.zariust.common;
 import java.util.HashSet;
 import java.util.Set;
 import org.bukkit.Material;
+import org.bukkit.TreeSpecies;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Boat;
@@ -108,20 +109,33 @@ public final class CommonEntity {
     }
 
     public static Material getVehicleType(Entity e) {
-        if (e instanceof Boat)
-            return Material.BOAT;
+        if (e instanceof Boat) {
+            TreeSpecies boat = ((Boat) e).getWoodType();
+            if(boat.equals(TreeSpecies.ACACIA))
+            	return Material.ACACIA_BOAT;
+            if(boat.equals(TreeSpecies.BIRCH))
+                return Material.BIRCH_BOAT;
+            if(boat.equals(TreeSpecies.DARK_OAK))
+                return Material.DARK_OAK_BOAT;
+            if(boat.equals(TreeSpecies.GENERIC))
+                return Material.OAK_BOAT;
+            if(boat.equals(TreeSpecies.JUNGLE))
+                return Material.JUNGLE_BOAT;
+            if(boat.equals(TreeSpecies.REDWOOD))
+                return Material.SPRUCE_BOAT;
+        }
         if (e instanceof Minecart)
             return Material.MINECART;
         if (e instanceof CommandMinecart)
-            return Material.COMMAND_MINECART;
+            return Material.COMMAND_BLOCK_MINECART;
         if (e instanceof ExplosiveMinecart)
-        	return Material.EXPLOSIVE_MINECART;
+        	return Material.TNT_MINECART;
         if (e instanceof HopperMinecart)
         	return Material.HOPPER_MINECART;
         if (e instanceof PoweredMinecart)
-        	return Material.POWERED_MINECART;
+        	return Material.FURNACE_MINECART;
         if (e instanceof StorageMinecart)
-        	return Material.STORAGE_MINECART;
+        	return Material.CHEST_MINECART;
         return null;
     }
 
@@ -144,13 +158,13 @@ public final class CommonEntity {
         if (e instanceof FishHook)
             return Material.FISHING_ROD;
         if (e instanceof Snowball)
-            return Material.SNOW_BALL;
+            return Material.SNOWBALL;
         if (e instanceof ThrownExpBottle)
-            return Material.EXP_BOTTLE;
+            return Material.EXPERIENCE_BOTTLE;
         if (e instanceof ThrownPotion)
             return Material.POTION;
         if (e instanceof WitherSkull)
-            return Material.SKULL;
+            return Material.WITHER_SKELETON_SKULL;
         return null;
     }
 

@@ -117,7 +117,7 @@ public class OtherDrops extends JavaPlugin {
             configFile.createNewFile();
             out = new BufferedWriter(new FileWriter(configFile));
             for (Enchantment mat : Enchantment.values()) {
-                out.write(mat.getName().toString() + "\n");
+                out.write(mat.getKey().toString().replace("minecraft:", "") + "\n");
             }
             out.close();
         } catch (IOException exception) {

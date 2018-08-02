@@ -78,7 +78,12 @@ public class VehicleDrop extends DropType {
             quantityActuallyDropped++;
             Entity entity;
             switch (vessel) {
-            case BOAT:
+            case OAK_BOAT:
+            case SPRUCE_BOAT:
+            case BIRCH_BOAT:
+            case JUNGLE_BOAT:
+            case ACACIA_BOAT:
+            case DARK_OAK_BOAT:
                 entity = world.spawn(where, Boat.class);
                 break;
             case MINECART:
@@ -87,16 +92,16 @@ public class VehicleDrop extends DropType {
             case HOPPER_MINECART:
                 entity = world.spawn(where, HopperMinecart.class);
                 break;
-            case EXPLOSIVE_MINECART:
+            case TNT_MINECART:
                 entity = world.spawn(where, ExplosiveMinecart.class);
                 break;
-            case COMMAND_MINECART:
+            case COMMAND_BLOCK_MINECART:
                 entity = world.spawn(where, CommandMinecart.class);
                 break;
-            case POWERED_MINECART:
+            case FURNACE_MINECART:
                 entity = world.spawn(where, PoweredMinecart.class);
                 break;
-            case STORAGE_MINECART:
+            case CHEST_MINECART:
                 entity = world.spawn(where, StorageMinecart.class);
                 break;
             case PAINTING: // Probably won't actually work
@@ -122,17 +127,30 @@ public class VehicleDrop extends DropType {
         if (split.length > 1)
             data = split[1];
         String name = split[0];
-        if (name.equals("BOAT"))
-            return new VehicleDrop(amount, Material.BOAT, chance);
-        if (name.equals("POWERED_MINECART"))
-            return new VehicleDrop(amount, Material.POWERED_MINECART, chance); // TODO:
+        if (name.equals("OAK_BOAT"))
+            return new VehicleDrop(amount, Material.OAK_BOAT, chance);
+        if (name.equals("ACACIA_BOAT"))
+            return new VehicleDrop(amount, Material.ACACIA_BOAT, chance);
+        if (name.equals("BIRCH_BOAT"))
+            return new VehicleDrop(amount, Material.BIRCH_BOAT, chance);
+        if (name.equals("DARK_OAK_BOAT"))
+            return new VehicleDrop(amount, Material.DARK_OAK_BOAT, chance);
+        if (name.equals("SPRUCE_BOAT"))
+            return new VehicleDrop(amount, Material.SPRUCE_BOAT, chance);
+        if (name.equals("JUNGLE_BOAT"))
+            return new VehicleDrop(amount, Material.JUNGLE_BOAT, chance);
+        if (name.equals("FURNACE_MINECART"))
+            return new VehicleDrop(amount, Material.FURNACE_MINECART, chance); // TODO:
                                                                                // Power?
                                                                                // (needs
                                                                                // API?)
-        if (name.equals("STORAGE_MINECART")) {
-            Data state = ContainerData.parse(Material.STORAGE_MINECART, data);
-            return new VehicleDrop(amount, Material.STORAGE_MINECART, state,
+        if (name.equals("CHEST_MINECART")) {
+            Data state = ContainerData.parse(Material.CHEST_MINECART, data);
+            return new VehicleDrop(amount, Material.CHEST_MINECART, state,
                     chance);
+        }
+        if (name.equals("TNT_MINECART")) {
+            return new VehicleDrop(amount, Material.TNT_MINECART, chance);
         }
         if (name.equals("MINECART")) {
             Data state = VehicleData.parse(Material.MINECART, data);

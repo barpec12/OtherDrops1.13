@@ -69,7 +69,7 @@ public class StormEvent extends SpecialResult {
         // By using Boolean.TRUE I eliminate the need to check for null
         // ZAR: nope, getting a null pointer error now.
         if (biomes != null)
-            if (biomes.get(Biome.HELL) == Boolean.TRUE)
+            if (biomes.get(Biome.NETHER) == Boolean.TRUE)
                 return false;
         return true;
     }
@@ -77,7 +77,7 @@ public class StormEvent extends SpecialResult {
     @Override
     public boolean canRunFor(OccurredEvent drop) {
         Biome biome = drop.getBiome();
-        if (biome == Biome.HELL)
+        if (biome == Biome.NETHER)
             return false;
         return true;
     }

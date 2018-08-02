@@ -10,7 +10,6 @@ import org.bukkit.Material;
 
 import com.gmail.zariust.common.CMEnchantment;
 import com.gmail.zariust.common.CommonEnchantments;
-import com.gmail.zariust.otherdrops.ItemIDReplacer;
 import com.gmail.zariust.otherdrops.Log;
 import com.gmail.zariust.otherdrops.data.Data;
 import com.gmail.zariust.otherdrops.data.ItemData;
@@ -97,13 +96,10 @@ public class ODItem {
      * @param name
      * @return
      */
-    @SuppressWarnings("deprecation")
 	public Material getMaterial() {
         if (this.material == null) {
         	if(this.name.matches("[0-9]+")) {
-                Log.logWarning("Error while parsing: " + this.name + ". Support for numerical IDs has been dropped! Locating item ID...");
-            	Log.logWarning("Please replace the occurence of '" + this.name + "' with '" + Material.getMaterial(Integer.parseInt(this.name)).toString() + "'");
-            	ItemIDReplacer.replaceFile(Integer.parseInt(name), Material.getMaterial(Integer.parseInt(name)).toString());
+                Log.logWarning("Error while parsing: " + this.name + ". Support for numerical IDs has been dropped!");
             	Log.logWarning("The drop has been disabled to prevent issues!");
         	}
         	else {
