@@ -16,12 +16,16 @@
 
 package com.gmail.zariust.otherdrops.data;
 
+import java.util.EnumSet;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Jukebox;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.material.MaterialData;
 
 import com.gmail.zariust.common.CommonMaterial;
 import com.gmail.zariust.common.MaterialGroup;
@@ -47,7 +51,6 @@ public class RecordData extends EffectData {
         }
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public int getData() {
         Integer discId = null;
@@ -71,10 +74,12 @@ public class RecordData extends EffectData {
         return discId;
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void setData(int d) {
-        disc = Material.getMaterial(d);
+		for(Material i : EnumSet.allOf(Material.class)) {
+			if(i.getId() == d)
+			disc = Bukkit.getUnsafe().fromLegacy(new MaterialData(i));
+		}
     }
 
     @Override

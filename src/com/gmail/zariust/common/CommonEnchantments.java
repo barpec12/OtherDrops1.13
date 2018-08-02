@@ -98,18 +98,6 @@ public class CommonEnchantments {
     static Map<String, String> aliases = new HashMap<String, String>();
     static {
         aliases.put("aspectfire", "fireaspect");
-        aliases.put("sharpness", "damageall");
-        aliases.put("smite", "damageundead");
-        aliases.put("punch", "arrowknockback");
-        aliases.put("looting", "lootbonusmobs");
-        aliases.put("fortune", "lootbonusblocks");
-        aliases.put("baneofarthropods", "damageundead");
-        aliases.put("power", "arrowdamage");
-        aliases.put("flame", "arrowfire");
-        aliases.put("infinity", "arrowinfinite");
-        aliases.put("unbreaking", "durability");
-        aliases.put("efficiency", "digspeed");
-        aliases.put("smite", "damageundead");
     }
 
     /**
@@ -137,8 +125,7 @@ public class CommonEnchantments {
         // ignoring space,
         // underscore and dashes
         for (Enchantment value : Enchantment.values()) {
-            if (enchString.equalsIgnoreCase(value.getName().replaceAll(
-                    "[\\s_-]", ""))) {
+            if (enchString.equalsIgnoreCase(value.getKey().toString().replace("minecraft:", ""))) {
                 return value;
             }
         }
@@ -168,11 +155,11 @@ public class CommonEnchantments {
                         stack.addEnchantment(ench, level);
                     }
                     Log.logInfo("Enchantment (" + ench.getStartLevel() + "-"
-                            + ench.getMaxLevel() + "): " + ench.getName() + "#"
+                            + ench.getMaxLevel() + "): " + ench.getKey().toString().replace("minecraft:", "") + "#"
                             + level + " applied.", Verbosity.HIGHEST);
                 } catch (IllegalArgumentException ex) {
                     Log.logInfo("Enchantment (" + ench.getStartLevel() + "-"
-                            + ench.getMaxLevel() + "): " + ench.getName() + "#"
+                            + ench.getMaxLevel() + "): " + ench.getKey().toString().replace("minecraft:", "") + "#"
                             + level + " cannot be applied (" + ex.getMessage()
                             + ").", Verbosity.HIGHEST);
                 }
@@ -200,8 +187,7 @@ public class CommonEnchantments {
     }
 
     // eg. damage_all, d_arach = d_arach, damage_all
-    public static boolean matches(List<CMEnchantment> customEnchs,
-            Map<Enchantment, Integer> toolEnchs) {
+    public static boolean matches(List<CMEnchantment> customEnchs, Map<Enchantment, Integer> toolEnchs) {
         int matchCount = 0;
         for (CMEnchantment ench : customEnchs) {
             if (ench.getNoEnch()) {
@@ -213,7 +199,7 @@ public class CommonEnchantments {
             }
             for (Entry<Enchantment, Integer> entry : toolEnchs.entrySet()) {
                 if (ench.getEnchRaw() != null)
-                    if (ench.getEnchRaw() == entry.getKey()) {
+                    if (ench.getEnchRaw().toString().replace("minecraft:", "").equalsIgnoreCase(entry.getKey().toString().replace("minecraft:", ""))) {
                         if (ench.getLevelRange().contains(entry.getValue()))
                             matchCount++;
                     }

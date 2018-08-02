@@ -58,7 +58,6 @@ public class SelfDrop extends DropType {
         count = intRange;
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     protected DropResult performDrop(Target source, Location from,
             DropFlags flags) {
@@ -88,64 +87,21 @@ public class SelfDrop extends DropType {
 			int data = block.getData(), quantity = count.getRandomIn(flags.rng);
             switch (material) {
             case AIR:
-                return dropResult;
-            case LOG:
-            case WOOL:
-            case STEP:
-            case LONG_GRASS:
-            case SMOOTH_BRICK:
-            case HUGE_MUSHROOM_1:
-            case HUGE_MUSHROOM_2:
-                break;
-            case SAPLING:
-            case LEAVES:
-                data = data & 3;
-                break;
-            case BED_BLOCK:
-                data = 0;
-                material = Material.BED;
-                break;
-            case DOUBLE_STEP:
-                quantity *= 2;
-                break;
             case REDSTONE_WIRE:
                 data = 0;
                 material = Material.REDSTONE;
                 break;
-            case SIGN_POST:
+            case SIGN:
             case WALL_SIGN:
                 data = 0;
                 material = Material.SIGN;
                 break;
-            case WOODEN_DOOR:
+            case MOVING_PISTON:
                 data = 0;
-                material = Material.WOOD_DOOR;
+                PistonExtensionMaterial ext = (PistonExtensionMaterial) block.getState().getData();
+                material = ext.isSticky() ? Material.STICKY_PISTON : Material.PISTON;
                 break;
-            case PISTON_EXTENSION:
-                data = 0;
-                PistonExtensionMaterial ext = (PistonExtensionMaterial) block
-                        .getState().getData();
-                material = ext.isSticky() ? Material.PISTON_STICKY_BASE
-                        : Material.PISTON_BASE;
-                break;
-            case BURNING_FURNACE:
-                data = 0;
-                material = Material.FURNACE;
-                break;
-            case IRON_DOOR_BLOCK:
-                data = 0;
-                material = Material.IRON_DOOR;
-                break;
-            case GLOWING_REDSTONE_ORE:
-                data = 0;
-                material = Material.REDSTONE_ORE;
-                break;
-            case DIODE_BLOCK_OFF:
-            case DIODE_BLOCK_ON:
-                data = 0;
-                material = Material.DIODE;
-                break;
-            case MOB_SPAWNER:
+            case SPAWNER:
                 CreatureSpawner spawner = (CreatureSpawner) block.getState();
                 data = spawner.getSpawnedType().getTypeId();
                 break;

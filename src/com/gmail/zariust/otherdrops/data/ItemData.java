@@ -18,8 +18,6 @@ package com.gmail.zariust.otherdrops.data;
 
 import static com.gmail.zariust.common.Verbosity.EXTREME;
 
-import org.bukkit.CoalType;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
@@ -87,25 +85,17 @@ public class ItemData implements Data, RangeableData {
      * @param mat
      * @return
      */
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
-    private String get(Material mat) {
+    @SuppressWarnings("incomplete-switch")
+	private String get(Material mat) {
         if (data == -1)
             return "THIS";
         if (mat.isBlock())
             return CommonMaterial.getBlockOrItemData(mat, data);
         switch (mat) {
-        case COAL:
-            return CoalType.getByData((byte) data).toString();
-        case INK_SACK:
-            DyeColor dyeColorData = DyeColor.getByDyeData((byte) (0xF - data));
-            if (dyeColorData != null)
-                return dyeColorData.toString();
-            break;
         case LEATHER_BOOTS:
         case LEATHER_CHESTPLATE:
         case LEATHER_HELMET:
         case LEATHER_LEGGINGS:
-        case SKULL_ITEM:
             return dataString;
         }
         if (data > 0)
@@ -131,7 +121,6 @@ public class ItemData implements Data, RangeableData {
      * @return
      * @throws IllegalArgumentException
      */
-    @SuppressWarnings("deprecation")
 	public static Data parse(Material mat, String state)
             throws IllegalArgumentException {
         if (mat == null || state == null || state.isEmpty())
@@ -140,41 +129,23 @@ public class ItemData implements Data, RangeableData {
             return RangeData.parse(state);
         Integer data = 0;
         switch (mat) {
-        case INK_SACK:
-            DyeColor dye = DyeColor.valueOf(state.toUpperCase());
-            if (dye != null)
-                data = CommonMaterial.getDyeColor(dye);
-            break;
-        case COAL:
-            CoalType coal = CoalType.valueOf(state.toUpperCase());
-            if (coal != null)
-                data = Integer.valueOf(coal.getData());
-            break;
-        case MOB_SPAWNER:
-        case MONSTER_EGG: // spawn eggs
+        case SPAWNER:
             return SpawnerData.parse(state);
         case LEATHER_BOOTS:
         case LEATHER_CHESTPLATE:
         case LEATHER_HELMET:
         case LEATHER_LEGGINGS:
             return parseItemMeta(state, ItemMetaType.LEATHER);
-        case SKULL_ITEM:
-            return parseItemMeta(state, ItemMetaType.SKULL);
         case WRITTEN_BOOK:
             return parseItemMeta(state, ItemMetaType.BOOK);
         case ENCHANTED_BOOK:
             return parseItemMeta(state, ItemMetaType.ENCHANTED_BOOK);
-        case FIREWORK:
+        case FIREWORK_ROCKET:
+        case FIREWORK_STAR:
             return parseItemMeta(state, ItemMetaType.FIREWORK);
         default:
             if (mat.isBlock()) {
                 data = CommonMaterial.parseBlockOrItemData(mat, state);
-                if (mat == Material.LEAVES) {
-                    Log.dMsg("PARSING LEAVES DATA before = "+data);
-                    //data |= 4;
-                    data = ((0x3) & data);
-                    Log.dMsg("PARSING LEAVES DATA after = "+data);
-                }
                 break;
             }
             if (!state.isEmpty())

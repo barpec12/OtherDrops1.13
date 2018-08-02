@@ -69,9 +69,9 @@ public class ThunderEvent extends SpecialResult {
         // By using Boolean.TRUE I eliminate the need to check for null
         // ZAR: nope, getting a null pointer error now so checking for null
         if (biomes != null) {
-            if (biomes.get(Biome.HELL) == Boolean.TRUE)
+            if (biomes.get(Biome.NETHER) == Boolean.TRUE)
                 return false;
-            if (biomes.get(Biome.SKY) == Boolean.TRUE)
+            if (biomes.get(Biome.THE_END) == Boolean.TRUE)
                 return false;
         }
         return true;
@@ -80,7 +80,7 @@ public class ThunderEvent extends SpecialResult {
     @Override
     public boolean canRunFor(OccurredEvent drop) {
         Biome biome = drop.getBiome();
-        if (biome == Biome.HELL || biome == Biome.SKY)
+        if (biome == Biome.NETHER || biome == Biome.THE_END)
             return false;
         return true;
     }

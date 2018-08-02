@@ -81,8 +81,6 @@ public class BlockTarget implements Target {
 
     public BlockTarget(Material mat, Data d) { // The Rome constructor
         id = mat;
-        if (mat == Material.LEAVES && d != null)
-            d.setData((byte) ((0x3) & d.getData()));
         data = d;
     }
 
@@ -117,11 +115,10 @@ public class BlockTarget implements Target {
             return new SimpleData();
         switch (block.getType()) {
         case FURNACE:
-        case BURNING_FURNACE:
         case DISPENSER:
         case CHEST:
             return new ContainerData(block.getState());
-        case MOB_SPAWNER:
+        case SPAWNER:
             return new SpawnerData(block.getState());
         case NOTE_BLOCK:
             return new NoteData(block.getState());
@@ -191,14 +188,12 @@ public class BlockTarget implements Target {
         return match;
     }
 
-    @SuppressWarnings("deprecation")
 	public static Target parse(String name, String state, String customName) {        
         name = name.toUpperCase();
         state = state.toUpperCase();
         Material mat = null;
         if(name.matches("[0-9]+")) {
-            Log.logWarning("Error while parsing: " + name + ". Support for numerical IDs has been dropped! Locating item ID...");
-        	Log.logWarning("Please replace the occurence of '" + name + "' with '" + Material.getMaterial(Integer.parseInt(name)).toString() + "'");
+            Log.logWarning("Error while parsing: " + name + ". Support for numerical IDs has been dropped!");
         }
         
         mat = Material.getMaterial(name.toUpperCase());
@@ -212,19 +207,19 @@ public class BlockTarget implements Target {
         }
         if (!mat.isBlock()) {
             // Only a very select few non-blocks are permitted as a target
-            if (mat != Material.PAINTING && mat != Material.BOAT
+            if (mat != Material.PAINTING && mat != Material.OAK_BOAT
                     && mat != Material.MINECART
-                    && mat != Material.COMMAND_MINECART
-                    && mat != Material.EXPLOSIVE_MINECART
+                    && mat != Material.COMMAND_BLOCK_MINECART
+                    && mat != Material.TNT_MINECART
                     && mat != Material.HOPPER_MINECART
-                    && mat != Material.POWERED_MINECART
-                    && mat != Material.STORAGE_MINECART
-                    && mat != Material.BOAT
-                    && mat != Material.BOAT_ACACIA
-                    && mat != Material.BOAT_BIRCH
-                    && mat != Material.BOAT_DARK_OAK
-                    && mat != Material.BOAT_JUNGLE
-                    && mat != Material.BOAT_SPRUCE)
+                    && mat != Material.FURNACE_MINECART
+                    && mat != Material.CHEST_MINECART
+                    && mat != Material.OAK_BOAT
+                    && mat != Material.ACACIA_BOAT
+                    && mat != Material.BIRCH_BOAT
+                    && mat != Material.DARK_OAK_BOAT
+                    && mat != Material.JUNGLE_BOAT
+                    && mat != Material.SPRUCE_BOAT)
                 return null;
             else
                 return VehicleTarget.parse(mat, state);

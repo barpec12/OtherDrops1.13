@@ -38,7 +38,6 @@ public class SpawnerData implements Data {
         creature = type;
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public int getData() {
         return creature.getTypeId();
@@ -46,7 +45,6 @@ public class SpawnerData implements Data {
 
     @Override
     public void setData(int d) {
-        @SuppressWarnings("deprecation")
 		EntityType c = EntityType.fromId(d);
         if (c != null)
             creature = c;
@@ -61,7 +59,7 @@ public class SpawnerData implements Data {
 
     @Override
     public String get(Enum<?> mat) {
-        if (mat == Material.MOB_SPAWNER)
+        if (mat == Material.SPAWNER)
             return creature.toString();
         return "";
     }

@@ -57,6 +57,7 @@ import com.gmail.zariust.otherdrops.event.DropsList;
 import com.gmail.zariust.otherdrops.event.GroupDropEvent;
 import com.gmail.zariust.otherdrops.event.SimpleDrop;
 import com.gmail.zariust.otherdrops.parameters.Trigger;
+import com.gmail.zariust.otherdrops.parameters.conditions.Cooldown;
 import com.gmail.zariust.otherdrops.subject.PlayerSubject;
 import com.gmail.zariust.otherdrops.subject.Target;
 import com.herocraftonline.heroes.characters.Hero;
@@ -328,7 +329,6 @@ public class OtherDropsCommand implements CommandExecutor {
      * @param playerName
      * @param dsl
      */
-    @SuppressWarnings("deprecation")
 	public void getLocationFromDropString(CommandSender sender, String[] args, dropStringLoc dsl) {
         World world = null;
         String playerName = "unknown";
@@ -507,6 +507,7 @@ public class OtherDropsCommand implements CommandExecutor {
      */
     private void cmdReload(CommandSender sender) {
         otherdrops.config.load(sender);
+        Cooldown.cooldowns.clear();
         sender.sendMessage("OtherDrops config reloaded.");
         Log.logInfo("Config reloaded by " + getName(sender) + ".");
     }
@@ -563,7 +564,7 @@ public class OtherDropsCommand implements CommandExecutor {
             if(!playerItem.getEnchantments().isEmpty()) {
             	itemFinalWriteData += "!";
             	for(Enchantment enchInMap : playerItem.getEnchantments().keySet()) {
-            		itemFinalWriteData += enchInMap.getName() + "#" + playerItem.getEnchantmentLevel(enchInMap) + "!";
+            		itemFinalWriteData += enchInMap.getKey().toString().replace("minecraft:", "") + "#" + playerItem.getEnchantmentLevel(enchInMap) + "!";
             	}
             }
             if(playerItem.getItemMeta() != null) {
@@ -597,7 +598,7 @@ public class OtherDropsCommand implements CommandExecutor {
             if(!playerItem.getEnchantments().isEmpty()) {
             	itemFinalWriteData += "!";
             	for(Enchantment enchInMap : playerItem.getEnchantments().keySet()) {
-            		itemFinalWriteData += enchInMap.getName() + "#" + playerItem.getEnchantmentLevel(enchInMap) + "!";
+            		itemFinalWriteData += enchInMap.getKey().toString().replace("minecraft:", "") + "#" + playerItem.getEnchantmentLevel(enchInMap) + "!";
             	}
             }
             

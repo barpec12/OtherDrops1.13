@@ -117,7 +117,10 @@ public class VehicleData implements Data {
 
     @Override
     public String get(Enum<?> mat) {
-        if (mat == Material.BOAT || mat == Material.MINECART)
+        if (mat == Material.ACACIA_BOAT || mat == Material.BIRCH_BOAT ||
+        	mat == Material.DARK_OAK_BOAT || mat == Material.OAK_BOAT ||
+        	mat == Material.SPRUCE_BOAT || mat == Material.JUNGLE_BOAT ||
+        	mat == Material.MINECART)
             return creature == null ? (state == null ? "" : state.toString()) : creature.toString();
         return "";
     }
@@ -156,7 +159,12 @@ public class VehicleData implements Data {
             if (creature != null)
                 return new VehicleData(creature);
             // Fallthrough intentional
-        case BOAT:
+        case OAK_BOAT:
+        case SPRUCE_BOAT:
+        case BIRCH_BOAT:
+        case JUNGLE_BOAT:
+        case ACACIA_BOAT:
+        case DARK_OAK_BOAT:
             try {
                 VehicleState vs = VehicleState.valueOf(state);
                 return new VehicleData(vs);

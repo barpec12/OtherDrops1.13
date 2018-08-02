@@ -1,14 +1,17 @@
 package com.gmail.zariust.otherdrops.data.effects;
 
+import java.util.EnumSet;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.material.MaterialData;
 
 import com.gmail.zariust.common.Verbosity;
 import com.gmail.zariust.otherdrops.Log;
 import com.gmail.zariust.otherdrops.data.EffectData;
 
 public class StepSoundEffectData extends EffectData {
-    @SuppressWarnings("deprecation")
 	public StepSoundEffectData(Material mat) { // BLOCK_BREAK effect
         data = mat.getId();
     }
@@ -26,9 +29,13 @@ public class StepSoundEffectData extends EffectData {
 
     }
     
-    @SuppressWarnings("deprecation")
 	@Override
     protected String get(Effect effect) {
-        return Material.getMaterial(data).toString();
+		String returnVal = "";
+		for(Material i : EnumSet.allOf(Material.class)) {
+			if(i.getId() == data)
+			returnVal = Bukkit.getUnsafe().fromLegacy(new MaterialData(i)).toString();
+		}
+		return returnVal;
     }
 }

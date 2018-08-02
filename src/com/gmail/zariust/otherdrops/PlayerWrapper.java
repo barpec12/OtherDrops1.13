@@ -45,6 +45,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
 import org.bukkit.block.PistonMoveReaction;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.conversations.Conversation;
@@ -76,7 +77,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.util.Vector;
 
-@SuppressWarnings("deprecation")
 public class PlayerWrapper implements Player {
     private final Player               caller;
     private final ConsoleCommandSender console = Bukkit.getConsoleSender();
@@ -505,11 +505,6 @@ public class PlayerWrapper implements Player {
     public boolean sendChunkChange(Location loc, int sx, int sy, int sz,
             byte[] data) {
         return caller.sendChunkChange(loc, sx, sy, sz, data);
-    }
-
-    @Override
-    public void sendBlockChange(Location loc, int material, byte data) {
-        caller.sendBlockChange(loc, material, data);
     }
 
     @Override
@@ -1652,6 +1647,26 @@ public class PlayerWrapper implements Player {
 	public void showPlayer(Plugin arg0, Player arg1) {
 		throw new UnsupportedOperationException("Not supported yet.");
 		
+	}
+
+	@Override
+	public boolean isSwimming() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setSwimming(boolean arg0) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void sendBlockChange(Location arg0, BlockData arg1) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public Spigot spigot() {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 }

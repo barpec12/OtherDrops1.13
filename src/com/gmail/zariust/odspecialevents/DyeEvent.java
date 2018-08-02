@@ -17,6 +17,7 @@
 package com.gmail.zariust.odspecialevents;
 
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -37,7 +38,6 @@ public class DyeEvent extends SpecialResult {
         super("DYE", source);
     }
 
-    @SuppressWarnings("deprecation")
 	@Override
     public void executeAt(OccurredEvent event) {
         DyeColor dye = DyeColor.PINK;
@@ -45,11 +45,45 @@ public class DyeEvent extends SpecialResult {
             Agent agent = event.getTool();
             if (agent instanceof PlayerSubject) {
                 ToolAgent tool = ((PlayerSubject) agent).getTool();
-                if (tool.getMaterial() == Material.INK_SACK)
-                    dye = DyeColor.getByDyeData((byte) (0xF - tool.getData().getData()));
+                if (tool.getMaterial() == Material.INK_SAC)
+                    dye = DyeColor.BLACK;
+                if (tool.getMaterial() == Material.LAPIS_LAZULI)
+                	dye = DyeColor.BLUE;
+                if (tool.getMaterial() == Material.COCOA_BEANS)
+                	dye = DyeColor.BROWN;
+                if (tool.getMaterial() == Material.CYAN_DYE)
+                	dye = DyeColor.CYAN;
+                if (tool.getMaterial() == Material.GRAY_DYE)
+                	dye = DyeColor.GRAY;
+                if (tool.getMaterial() == Material.CACTUS_GREEN)
+                	dye = DyeColor.GREEN;
+                if (tool.getMaterial() == Material.LIGHT_BLUE_DYE)
+                	dye = DyeColor.LIGHT_BLUE;
+                if (tool.getMaterial() == Material.LIGHT_GRAY_DYE)
+                	dye = DyeColor.LIGHT_GRAY;
+                if (tool.getMaterial() == Material.LIME_DYE)
+                	dye = DyeColor.LIME;
+                if (tool.getMaterial() == Material.MAGENTA_DYE)
+                	dye = DyeColor.MAGENTA;
+                if (tool.getMaterial() == Material.ORANGE_DYE)
+                	dye = DyeColor.ORANGE;
+                if (tool.getMaterial() == Material.PINK_DYE)
+                	dye = DyeColor.PINK;
+                if (tool.getMaterial() == Material.PURPLE_DYE)
+                	dye = DyeColor.PURPLE;
+                if (tool.getMaterial() == Material.ROSE_RED)
+                	dye = DyeColor.RED;
+                if (tool.getMaterial() == Material.BONE_MEAL)
+                	dye = DyeColor.WHITE;
+                if (tool.getMaterial() == Material.DANDELION_YELLOW)
+                	dye = DyeColor.YELLOW;
             }
-            if (colour == null)
-                dye = DyeColor.getByDyeData((byte) event.getRandom(16));
+            if (colour == null) {
+            	DyeColor[] dyes = DyeColor.values();
+            	int rnd = new Random().nextInt(dyes.length);
+            	dye = dyes[rnd];
+            }
+            	
         } else
             dye = colour;
         CreatureSubject target = (CreatureSubject) event.getTarget();
