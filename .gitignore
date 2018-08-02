@@ -7,8 +7,10 @@ builds/*
 doc/*
 *.*~
 OtherDrops-*.jar
+OtherDrops1.13-*.jar
 OtherDrops/events/*.jar
 lib/bukkit*.jar
+lib/spigot-api-1.13-R0.1-SNAPSHOT.jar
 .eclipse-build
 # Mac filesystem dust
 .DS_Store
