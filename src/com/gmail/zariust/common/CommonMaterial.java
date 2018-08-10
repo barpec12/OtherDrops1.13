@@ -29,192 +29,172 @@ public final class CommonMaterial {
     private static final Map<String, String> ALIASES;
     static {
         Map<String, String> aMap = new HashMap<String, String>();
-        aMap.put("GLASS_PANE", "THIN_GLASS");
-        aMap.put("WOODEN_SPADE", "WOOD_SPADE");
-        aMap.put("WOODEN_AXE", "WOOD_AXE");
-        aMap.put("WOODEN_HOE", "WOOD_HOE");
-        aMap.put("WOODEN_PICKAXE", "WOOD_PICKAXE");
-        aMap.put("WOODEN_SWORD", "WOOD_SWORD");
-        aMap.put("GOLDEN_SPADE", "GOLD_SPADE");
-        aMap.put("GOLDEN_AXE", "GOLD_AXE");
-        aMap.put("GOLDEN_HOE", "GOLD_HOE");
-        aMap.put("GOLDEN_PICKAXE", "GOLD_PICKAXE");
-        aMap.put("GOLDEN_SWORD", "GOLD_SWORD");
+        aMap.put("THIN_GLASS", "GLASS_PANE");
+        aMap.put("WOOD_SPADE", "WOODEN_SHOVEL");
+        aMap.put("WOOD_AXE", "WOODEN_AXE");
+        aMap.put("WOOD_HOE", "WOODEN_HOE");
+        aMap.put("WOOD_PICKAXE", "WOODEN_PICKAXE");
+        aMap.put("WOOD_SWORD", "WOODEN_SWORD");
+        aMap.put("GOLD_SPADE", "GOLDEN_SPADE");
+        aMap.put("GOLD_AXE", "GOLDEN_AXE");
+        aMap.put("GOLD_HOE", "GOLDEN_HOE");
+        aMap.put("GOLD_PICKAXE", "GOLDEN_PICKAXE");
+        aMap.put("GOLD_SWORD", "GOLDEN_SWORD");
         aMap.put("LEATHER_HELM", "LEATHER_HELMET");
         aMap.put("IRON_HELM", "IRON_HELMET");
-        aMap.put("GOLD_HELM", "GOLD_HELMET");
+        aMap.put("GOLD_HELM", "GOLDEN_HELMET");
         aMap.put("DIAMOND_HELM", "DIAMOND_HELMET");
-        aMap.put("WOODEN_PLATE", "WOOD_PLATE");
-        aMap.put("PLANK", "WOOD");
-        aMap.put("WOODEN_PLANK", "WOOD");
-        aMap.put("WOODEN_DOOR_ITEM", "WOOD_DOOR");
-        aMap.put("WOOD_DOOR_ITEM", "WOOD_DOOR");
-        aMap.put("WOOD_DOOR", "WOODEN_DOOR");
-        aMap.put("STONE_PRESSUREPLATE", "STONE_PLATE");
-        aMap.put("WOOD_PRESSUREPLATE", "WOOD_PLATE");
-        aMap.put("WOODEN_PRESSUREPLATE", "WOOD_PLATE");
         aMap.put("HANDS", "AIR");
         aMap.put("HAND", "AIR");
         aMap.put("NOTHING", "AIR");
 
-        aMap.put("DANDELION", "YELLOW_FLOWER");
-        aMap.put("ROSE", "RED_ROSE");
-        aMap.put("RED_FLOWER", "RED_ROSE");
-        aMap.put("flower", "YELLOW_FLOWER"); // Yellow flower is described as
-                                             // "flower" in game
+        aMap.put("YELLOW_FLOWER", "DANDELION");
+        aMap.put("ROSE", "ROSE_BUSH");
+        aMap.put("RED_FLOWER", "ROSE_BUSH");
 
         aMap.put("MOSS_STONE", "MOSSY_COBBLESTONE");
         aMap.put("MOSSY_COBBLE", "MOSSY_COBBLESTONE");
-        aMap.put("GUNPOWDER", "SULPHUR");
-        aMap.put("SULFUR", "SULPHUR");
-        aMap.put("TRAPDOOR", "TRAP_DOOR");
-        aMap.put("SLAB", "STEP");
-        aMap.put("DOUBLE_SLAB", "DOUBLE_STEP");
-        aMap.put("CRAFTING_TABLE", "WORKBENCH");
-        aMap.put("FARMLAND", "SOIL");
-        aMap.put("SEED", "SEEDS");
-        aMap.put("WHEAT_SEEDS", "SEEDS");
+        aMap.put("SULPHUR", "GUNPOWDER");
+        aMap.put("SULFUR", "GUNPOWDER");
+        aMap.put("WORKBENCH", "CRAFTING_TABLE");
+        aMap.put("SOIL", "FARMLAND");
+        aMap.put("SEEDS", "WHEAT_SEEDS");
         aMap.put("VINES", "VINE");
-        aMap.put("STONE_BRICK", "SMOOTH_BRICK");
-        aMap.put("DYE", "INK_SACK");
-        aMap.put("TRACKS", "RAILS");
-        aMap.put("TRACK", "RAILS");
-        aMap.put("RAIL", "RAILS");
+        aMap.put("SMOOTH_BRICK", "STONE_BRICKS");
+        aMap.put("TRACKS", "RAIL");
+        aMap.put("TRACK", "RAIL");
+        aMap.put("RAILS", "RAIL");
         aMap.put("ZOMBIE_FLESH", "ROTTEN_FLESH");
-        aMap.put("SPAWN_EGG", "MONSTER_EGG");
-        aMap.put("SPAWNEGG", "MONSTER_EGG");
-        aMap.put("SPAWNER_EGG", "MONSTER_EGG");
-        aMap.put("SPAWNEREGG", "MONSTER_EGG");
-        aMap.put("GLISTERING_MELON", "SPECKLED_MELON");
-        aMap.put("melonslice", "melon");
-        aMap.put("uncookedbeef", "rawbeef");
-        aMap.put("steak", "cookedbeef");
-        aMap.put("netherwartseeds", "netherstalk");
-        aMap.put("melonseed", "melonseeds");
-        aMap.put("pumpkinseed", "pumpkinseeds");
-        aMap.put("redstonerepeater", "diode");
-        aMap.put("beditem", "bed");
-        aMap.put("grilledfish", "cookedfish");
-        aMap.put("fish", "rawfish");
-        aMap.put("clock", "watch");
-        aMap.put("cookedpork", "grilledpork");
-        aMap.put("cookedporkchop", "grilledpork");
-        aMap.put("grilledporkchop", "grilledpork");
+        aMap.put("SPECKLED_MELON", "GLISTERING_MELON_SLICE");
+        aMap.put("melonslice", "MELON_SLICE");
+        aMap.put("uncookedbeef", "BEEF");
+        aMap.put("steak", "COOKED_BEEF");
+        aMap.put("netherwartseeds", "NETHER_WART");
+        aMap.put("netherstalk", "NETHER_WART");
+        aMap.put("melonseed", "melon_seeds");
+        aMap.put("pumpkinseed", "pumpkin_seeds");
+        aMap.put("redstonerepeater", "REPEATER");
+        aMap.put("diode", "REPEATER");
+        aMap.put("watch", "clock");
+        aMap.put("pork", "PORKCHOP");
+        aMap.put("cookedpork", "COOKED_PORKCHOP");
+        aMap.put("cookedporkchop", "COOKED_PORKCHOP");
+        aMap.put("grilledporkchop", "COOKED_PORKCHOP");
         aMap.put("rabbit_meat", "rabbit");
         aMap.put("raw_rabbit", "rabbit");
 
-        aMap.put("goldpants", "goldleggings");
-        aMap.put("goldvest", "goldchestplate");
-        aMap.put("goldchest", "goldchestplate");
-        aMap.put("chainmail", "mail");
-        aMap.put("wheatseeds", "seeds");
-        aMap.put("mushroomstew", "mushroomsoup");
-        aMap.put("flintandtinder", "flintandsteel");
-        aMap.put("ironbars", "ironfence");
+        aMap.put("goldpants", "golden_leggings");
+        aMap.put("goldvest", "golden_chestplate");
+        aMap.put("goldchest", "golden_chestplate");
+
+        aMap.put("mushroomsoup", "mushroom_stew");
+        aMap.put("flintandtinder", "flint_and_steel");
+        aMap.put("ironfence", "iron_bars");
         aMap.put("glowstoneblock", "glowstone");
         aMap.put("netherrock", "netherrack");
-        aMap.put("woodfence", "fence");
-        aMap.put("woodenfence", "fence");
         aMap.put("cacti", "cactus");
-        aMap.put("cobweb", "web");
-        aMap.put("poweredtracks", "powerrail");
-        aMap.put("detectortracks", "detectorrail");
+        aMap.put("web", "cobweb");
+        aMap.put("poweredtracks", "powered_rail");
+        aMap.put("powerrail", "powered_rail");
+        aMap.put("detectortracks", "detector_rail");
 
-        aMap.put("leathercap", "leatherhelmet");
-        aMap.put("leathertunic", "leatherchestplate");
-        aMap.put("leathervest", "leatherchestplate");
-        aMap.put("leatherchest", "leatherchestplate");
-        aMap.put("leatherpants", "leatherleggings");
+        aMap.put("leathercap", "leather_helmet");
+        aMap.put("leathertunic", "leather_chestplate");
+        aMap.put("leathervest", "leather_chestplate");
+        aMap.put("leatherchest", "leather_chestplate");
+        aMap.put("leatherpants", "leather_leggings");
 
-        aMap.put("chainmailvest", "chainmailchestplate");
-        aMap.put("chainmailchest", "chainmailchestplate");
-        aMap.put("chainmailpants", "chainmailleggings");
+        aMap.put("chainmailvest", "chainmail_chestplate");
+        aMap.put("chainmailchest", "chainmail_chestplate");
+        aMap.put("chainmailpants", "chainmail_leggings");
 
-        aMap.put("ironvest", "ironchestplate");
-        aMap.put("ironchest", "ironchestplate");
-        aMap.put("ironpants", "ironleggings");
+        aMap.put("ironvest", "iron_chestplate");
+        aMap.put("ironchest", "iron_chestplate");
+        aMap.put("ironpants", "iron_leggings");
 
-        aMap.put("diamondvest", "diamondchestplate");
-        aMap.put("diamondchest", "diamondchestplate");
-        aMap.put("diamondpants", "diamondleggings");
+        aMap.put("diamondvest", "diamond_chestplate");
+        aMap.put("diamondchest", "diamond_chestplate");
+        aMap.put("diamondpants", "diamond_leggings");
 
-        aMap.put("diamondshovel", "diamondspade");
-        aMap.put("goldshovel", "goldspade");
-        aMap.put("ironshovel", "ironspade");
-        aMap.put("stoneshovel", "stonespade");
-        aMap.put("woodshovel", "woodspade");
+        aMap.put("diamondspade", "diamond_shovel");
+        aMap.put("goldspade", "goldspadeshovel");
+        aMap.put("ironspade", "ironshovel");
+        aMap.put("stonespade", "stoneshovel");
+        aMap.put("woodspade", "woodshovel");
 
-        aMap.put("goldapple", "goldenapple");
+        aMap.put("goldapple", "golden_apple");
         aMap.put("redapple", "apple");
         aMap.put("sticks", "stick");
 
-        aMap.put("grassblock", "grass");
-        aMap.put("tallgrass", "longgrass");
-        aMap.put("wildgrass", "longgrass");
+        aMap.put("grass", "grassblock");
+        aMap.put("longgrass", "tall_grass");
+        aMap.put("wildgrass", "tall_grass");
 
-        aMap.put("saplings", "sapling");
-        aMap.put("lapislazuliore", "lapisore");
-        aMap.put("lapislazuliblock", "lapisblock");
-        aMap.put("stickypiston", "pistonstickybase");
-        aMap.put("piston", "pistonbase");
+        aMap.put("lapislazuliore", "lapis_ore");
+        aMap.put("lapislazuliblock", "lapis_block");
+        aMap.put("pistonstickybase", "sticky_piston");
+        aMap.put("pistonbase", "piston");
         aMap.put("bricks", "brick");
-        aMap.put("hiddensilverfish", "monstereggs");
-        aMap.put("mycelium", "mycel");
-        aMap.put("lilypad", "waterlily");
-        aMap.put("netherbrickfence", "netherfence");
+        aMap.put("mycel", "mycelium");
+        aMap.put("waterlily", "lily_pad");
+        aMap.put("netherfence", "nether_brick_fence");
 
-        aMap.put("stonebricks", "smoothbrick");
-        aMap.put("stonebrickstairs", "smoothstairs");
+        aMap.put("smoothbrick", "stone_bricks");
+        aMap.put("smoothstairs", "stone_brick_stairs");
 
-        aMap.put("endportal", "enderportal");
-        aMap.put("endportalframe", "enderportalframe");
-        aMap.put("endstone", "enderstone");
+        aMap.put("enderportal", "end_portal");
+        aMap.put("enderportalframe", "end_portal_frame");
+        aMap.put("enderstone", "end_stone");
 
-        aMap.put("rawporkchop", "pork");
-        aMap.put("chickenegg", "egg");
-        aMap.put("netherwart", "netherwarts");
+        aMap.put("rawporkchop", "porkchop");
+        aMap.put("egg", "chickenegg");
+        aMap.put("netherwarts", "nether_wart");
 
         aMap.put("cauldron_block", "cauldron");
         aMap.put("brewing_stand_block", "brewing_stand");
 
-        aMap.put("bucket of milk", "milk bucket");
-
-        aMap.put("inksac", "inksack");
+        aMap.put("bucket of milk", "milk_bucket");
         
-        aMap.put("firecharge", "fireball");
-
-        aMap.put("skull", "skull_item");
-        aMap.put("skullblock", "skull");
+        aMap.put("fireball", "fire_charge");
 
         // Records
-        aMap.put("13disc", "goldrecord");
-        aMap.put("catdisc", "greenrecord");
-        aMap.put("blocksdisc", "record3");
-        aMap.put("chirpdisc", "record4");
-        aMap.put("fardisc", "record5");
-        aMap.put("malldisc", "record6");
-        aMap.put("mellohidisc", "record7");
-        aMap.put("staldisc", "record8");
-        aMap.put("straddisc", "record9");
-        aMap.put("warddisc", "record10");
-        aMap.put("11disc", "record11");
-        aMap.put("waitdisc", "record12");
+        aMap.put("13disc", "MUSIC_DISC_13");
+        aMap.put("goldrecord", "MUSIC_DISC_13");
+        aMap.put("catdisc", "MUSIC_DISC_CAT");
+        aMap.put("greenrecord", "MUSIC_DISC_CAT");
+        aMap.put("blocksdisc", "MUSIC_DISC_BLOCKS");
+        aMap.put("record3", "MUSIC_DISC_BLOCKS");
+        aMap.put("chirpdisc", "MUSIC_DISC_CHIRP");
+        aMap.put("record4", "MUSIC_DISC_CHIRP");
+        aMap.put("fardisc", "MUSIC_DISC_FAR");
+        aMap.put("record5", "MUSIC_DISC_FAR");
+        aMap.put("malldisc", "MUSIC_DISC_MALL");
+        aMap.put("record6", "MUSIC_DISC_MALL");
+        aMap.put("mellohidisc", "MUSIC_DISC_MELLOHI");
+        aMap.put("record7", "MUSIC_DISC_MELLOHI");
+        aMap.put("staldisc", "MUSIC_DISC_STAL");
+        aMap.put("record8", "MUSIC_DISC_STAL");
+        aMap.put("straddisc", "MUSIC_DISC_STRAD");
+        aMap.put("record9", "MUSIC_DISC_STRAD");
+        aMap.put("warddisc", "MUSIC_DISC_WARD");
+        aMap.put("record10", "MUSIC_DISC_WARD");
+        aMap.put("11disc", "MUSIC_DISC_11");
+        aMap.put("record11", "MUSIC_DISC_11");
+        aMap.put("waitdisc", "MUSIC_DISC_WAIT");
+        aMap.put("record12", "MUSIC_DISC_WAIT");
 
-        aMap.put("commandblock", "command");
+        aMap.put("command", "command_block");
 
         // 1.6.1 mats
-        aMap.put("lead", "leash");
+        aMap.put("leash", "lead");
         aMap.put("haybale", "hay_block");
-        aMap.put("ironhorsearmour", "ironbarding");
-        aMap.put("goldhorsearmour", "goldbarding");
-        aMap.put("diamondhorsearmour", "diamondbarding");
-        aMap.put("ironhorsearmor", "ironbarding");
-        aMap.put("goldhorsearmor", "goldbarding");
-        aMap.put("diamondhorsearmor", "diamondbarding");
-        aMap.put("blockofcoal", "coalblock");
-        aMap.put("hardenedclay", "hardclay");
-
-        aMap.put("leaves_1", "leaves");
+        aMap.put("iron_horse_armour", "iron_horse_armor");
+        aMap.put("gold_horse_armour", "gold_horse_armor");
+        aMap.put("diamond_horse_armour", "diamond_horse_armor");
+        aMap.put("ironbarding", "iron_horse_armor");
+        aMap.put("goldbarding", "gold_horse_armor");
+        aMap.put("diamondbarding", "diamond_horse_armor");
+        aMap.put("blockofcoal", "coal_block");
 
         ALIASES = Collections.unmodifiableMap(aMap);
     }
@@ -287,21 +267,9 @@ public final class CommonMaterial {
 
         // note: aliases (on left) need to be uppercase with no spaces, dashes or underscores
         a2Map.put("ANYSHOVEL", "ANY_SPADE");
-        a2Map.put("LAPISLAZULI", "DYE@BLUE");
         
         // TODO: DISABLED until issues it causes with LAPIS_ORE are fixed
         //a2Map.put("LAPIS([^A-Z]?)", "DYE@BLUE$1"); // only lapis as a singular word, otherwise lapis_ore becomes lapisdye@blueore
-        
-        a2Map.put("BONEMEAL", "DYE@WHITE");
-        a2Map.put("COCOABEANS", "DYE@BROWN");
-
-        a2Map.put("SKELETONHEAD", "SKULL_ITEM@0");
-        a2Map.put("SKELETONSKULL", "SKULL_ITEM@0");
-        a2Map.put("ZOMBIEHEAD", "SKULL_ITEM@1");
-        a2Map.put("WITHERHEAD", "SKULL_ITEM@2");
-        a2Map.put("PLAYERHEAD", "SKULL_ITEM@3");
-        a2Map.put("CREEPERHEAD", "SKULL_ITEM@4");
-        a2Map.put("HEAD", "SKULL_ITEM@3");
 
         a2Map.put("WITHERSKELETON", "WITHER_SKELETON");
 
