@@ -107,7 +107,7 @@ public class OtherDrops extends JavaPlugin {
         writeNames("Horse.Color", Horse.Color.class);
         writeNames("Horse.Style", Horse.Style.class);
 
-        File folder = new File("plugins" + File.separator + "OtherDrops");
+        File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
         BufferedWriter out = null;
         // Have tried to refactor this out however enchantment class doesn't see to be an true enum so doesn't work with
         // the writeNames method
@@ -179,7 +179,7 @@ public class OtherDrops extends JavaPlugin {
 
         try {
             BufferedWriter out = null;
-            File folder = new File("plugins" + File.separator + "OtherDrops");
+            File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
             File configFile = new File(folder.getAbsolutePath() + File.separator + "known_lists" + File.separator + filename + ".txt");
             configFile.getParentFile().mkdirs();
             configFile.createNewFile();
