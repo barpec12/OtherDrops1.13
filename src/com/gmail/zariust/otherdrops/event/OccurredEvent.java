@@ -81,8 +81,12 @@ import com.gmail.zariust.otherdrops.subject.PlayerSubject;
 import com.gmail.zariust.otherdrops.subject.ProjectileAgent;
 import com.gmail.zariust.otherdrops.subject.Target;
 import com.gmail.zariust.otherdrops.subject.VehicleTarget;
+
+
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldguard.internal.platform.WorldGuardPlatform;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+
 import org.bukkit.Material;
 
 /**
@@ -800,7 +804,8 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
         regions = new HashSet<String>();
         if (!Dependencies.hasWorldGuard())
             return;
-        Map<String, ProtectedRegion> regionMap = Dependencies.getWorldGuard().getRegionContainer().get(world).getRegions();
+        WorldGuardPlatform wgPlatform = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform();
+		Map<String, ProtectedRegion> regionMap = wgPlatform.getRegionContainer().get(wgPlatform.getWorldByName(world.getName())).getRegions();
         Vector vec = new Vector(location.getX(), location.getY(),
                 location.getZ());
         for (String region : regionMap.keySet()) {

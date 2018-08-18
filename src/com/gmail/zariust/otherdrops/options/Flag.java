@@ -42,113 +42,64 @@ public abstract class Flag implements Comparable<Flag> {
     /**
      * Indicates that no other drop can accompany this drop.
      */
-    public final static Flag UNIQUE                      = new Flag("UNIQUE") {
-                                                             @Override
-                                                             public void matches(
-                                                                     OccurredEvent event,
-                                                                     boolean state,
-                                                                     final FlagState result) {
-                                                                 if (state) {
-                                                                     Log.logInfo(
-                                                                             "UNIQUE flag found...",
-                                                                             Verbosity.HIGHEST);
-                                                                     result.dropThis = true;
-                                                                     result.continueDropping = false;
-                                                                 }
-                                                             }
-                                                         };
+    public final static Flag UNIQUE = new Flag("UNIQUE") {
+    	@Override
+        public void matches(OccurredEvent event, boolean state, final FlagState result) {
+    		if (state) {
+    			Log.logInfo("UNIQUE flag found...",Verbosity.HIGHEST); 
+    			result.dropThis = true;
+    			result.continueDropping = false;
+    			}
+    		}
+    	};
 
-    public final static Flag WORLDGUARD_BUILD_PERMISSION = new Flag(
-                                                                 "WORLDGUARD_BUILD_PERMISSION") {
-                                                             @Override
-                                                             public void matches(
-                                                                     OccurredEvent event,
-                                                                     boolean state,
-                                                                     final FlagState result) {
-                                                                 // public
-                                                                 // Boolean
-                                                                 // checkWorldguardBuildPermission(Block
-                                                                 // block) {
-                                                                 if (Dependencies
-                                                                         .hasWorldGuard()) {
-                                                                     // Need to
-                                                                     // convert
-                                                                     // the
-                                                                     // block
-                                                                     // (it's
-                                                                     // location)
-                                                                     // to a
-                                                                     // WorldGuard
-                                                                     // Vector
-                                                                     Player player = null;
-                                                                     if (event
-                                                                             .getTool() instanceof PlayerSubject) {
-                                                                         player = ((PlayerSubject) event
-                                                                                 .getTool())
-                                                                                 .getPlayer();
-                                                                     }
-
-                                                                     if (player != null) {
-                                                                         if (Dependencies
-                                                                                 .getWorldGuard()
-                                                                                 .canBuild(
-                                                                                         player,
-                                                                                         event.getLocation())) {
-                                                                             Log.logInfo(
-                                                                                     "Worldguard build permission allowed.",
-                                                                                     HIGHEST);
-                                                                             result.dropThis = true;
-                                                                         } else {
-                                                                             Log.logInfo(
-                                                                                     "Worldguard build permission failed.",
-                                                                                     HIGHEST);
-                                                                             result.dropThis = false;
-                                                                         }
-                                                                     }
-                                                                 }
-                                                             }
-                                                         };
+    public final static Flag WORLDGUARD_BUILD_PERMISSION = new Flag("WORLDGUARD_BUILD_PERMISSION") {
+    	@Override
+    	public void matches(OccurredEvent event, boolean state, final FlagState result) {
+    		if (Dependencies.hasWorldGuard()) {
+    			Player player = null;
+    			if (event.getTool() instanceof PlayerSubject) {
+    				player = ((PlayerSubject) event.getTool()).getPlayer();
+    				}
+    			if (player != null) {
+    				if (Dependencies.getWorldGuard().createProtectionQuery().testBlockPlace(player, event.getLocation(), event.getLocation().getBlock().getType())) {
+    					Log.logInfo("Worldguard build permission allowed.", HIGHEST);
+    					result.dropThis = true;
+    					} else {
+    						Log.logInfo("Worldguard build permission failed.", HIGHEST);
+    						result.dropThis = false;
+    						}
+    				}
+    			}
+    		}
+    	};
 
     // Register Mob Arena Flag - this should be registered even if mob arena
     // cannot be found,
     // as drop entries with this flag should be ignored if not in an arena.
-    public final static Flag IN_MOB_ARENA                = new Flag(
-                                                                 "IN_MOB_ARENA") {
-                                                             @Override
-                                                             public void matches(
-                                                                     OccurredEvent event,
-                                                                     boolean state,
-                                                                     final FlagState result) {
-                                                                 if (state == false) {
-                                                                     result.dropThis = true;
-                                                                     result.continueDropping = true;
-                                                                 } else {
-                                                                     result.continueDropping = true;
-                                                                     if (!Dependencies
-                                                                             .hasMobArena()) {
-                                                                         Log.logInfo(
-                                                                                 "Checking IN_MOB_ARENA flag.  Mobarena not loaded so drop ignored.",
-                                                                                 Verbosity.HIGH);
-                                                                         result.dropThis = false;
-                                                                     } else {
-                                                                         if (Dependencies
-                                                                                 .getMobArenaHandler()
-                                                                                 .inRunningRegion(
-                                                                                         event.getLocation())) {
-                                                                             Log.logInfo(
-                                                                                     "Checking IN_MOB_ARENA flag. In arena = true, drop allowed.",
-                                                                                     Verbosity.HIGH);
-                                                                             result.dropThis = true;
-                                                                         } else {
-                                                                             Log.logInfo(
-                                                                                     "Checking IN_MOB_ARENA flag. In arena = false, drop ignored.",
-                                                                                     Verbosity.HIGH);
-                                                                             result.dropThis = false;
-                                                                         }
-                                                                     }
-                                                                 }
-                                                             }
-                                                         };
+    public final static Flag IN_MOB_ARENA = new Flag("IN_MOB_ARENA") {
+    	@Override
+    	public void matches(OccurredEvent event, boolean state, final FlagState result) {
+    		if (state == false) {
+    			result.dropThis = true;
+    			result.continueDropping = true;
+    			} else {
+    				result.continueDropping = true;
+    				if (!Dependencies.hasMobArena()) {
+    					Log.logInfo("Checking IN_MOB_ARENA flag.  Mobarena not loaded so drop ignored.", Verbosity.HIGH);
+    					result.dropThis = false;
+    					} else {
+    						if (Dependencies.getMobArenaHandler().inRunningRegion(event.getLocation())) {
+    							Log.logInfo("Checking IN_MOB_ARENA flag. In arena = true, drop allowed.", Verbosity.HIGH);
+    							result.dropThis = true;
+    							} else {
+    								Log.logInfo("Checking IN_MOB_ARENA flag. In arena = false, drop ignored.", Verbosity.HIGH);
+    								result.dropThis = false;
+    								}
+    						}
+    				}
+    		}
+    	};
 
     public final static class FlagState {
         public boolean dropThis         = true;
@@ -178,8 +129,7 @@ public abstract class Flag implements Comparable<Flag> {
     protected Flag(Plugin plugin, String tag) {
         this(tag);
         if (plugin == null || plugin instanceof OtherDrops)
-            throw new IllegalArgumentException(
-                    "Use your own plugin for registering a flag!");
+            throw new IllegalArgumentException("Use your own plugin for registering a flag!");
         pl = plugin;
     }
 
@@ -209,18 +159,15 @@ public abstract class Flag implements Comparable<Flag> {
     }
 
     public static Set<Flag> parseFrom(ConfigurationNode dropNode) {
-        List<String> list = OtherDropsConfig.getMaybeList(dropNode, "flag",
-                "flags");
+        List<String> list = OtherDropsConfig.getMaybeList(dropNode, "flag", "flags");
         Set<Flag> set = new HashSet<Flag>();
         for (String flag : list) {
             Flag newFlag = flags.get(flag.toUpperCase());
             if (newFlag != null) {
-                Log.logInfo("Adding valid flag: " + newFlag.toString(),
-                        Verbosity.HIGHEST);
+                Log.logInfo("Adding valid flag: " + newFlag.toString(), Verbosity.HIGHEST);
                 set.add(newFlag);
             } else {
-                Log.logInfo("Invalid flag, ignoring (" + flag + ")",
-                        Verbosity.NORMAL);
+                Log.logInfo("Invalid flag, ignoring (" + flag + ")", Verbosity.NORMAL);
             }
         }
         return set;
@@ -293,6 +240,5 @@ public abstract class Flag implements Comparable<Flag> {
      *            and whether to continue processing further drops. This
      *            parameter should be declared final.
      */
-    public abstract void matches(OccurredEvent event, boolean state,
-            final FlagState result);
+    public abstract void matches(OccurredEvent event, boolean state, final FlagState result);
 }
