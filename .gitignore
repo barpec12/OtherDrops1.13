@@ -21,6 +21,7 @@ src/com/gmail/zariust/bukkit/obevents/.DS_Store
 .recommenders/
 
 # Ignore plugin.yml as generated from plugin.yml.template
+rsrc/plugin.yml
 /.metadata/
 
 .externalToolBuilders/New_Builder.launch
