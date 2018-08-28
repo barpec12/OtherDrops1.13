@@ -7,7 +7,7 @@ otherdrops:
           drop: SLIME
           chance: 1
           message: ["The slimy creature seems perturbed that you removed it's home."]
-    LEAVES:
+    OAK_LEAVES:
         - action: LEAF_DECAY
           drop: stick
           chance: 25
@@ -15,14 +15,11 @@ otherdrops:
           drop: APPLE
           chance: 1
         - tool: ANY_HOE
-          drop: LEAVES
+          drop: OAK_LEAVES
           chance: 100
     BOOKSHELF:
         - tool: ALL
           drop: BOOKSHELF
-    BOAT:
-        - tool: ALL
-          drop: BOAT
     GLASS:
         - tool: ALL
           drop: GLASS
@@ -58,11 +55,11 @@ otherdrops:
           message: ["You really should shake the toe bones out from these boots."]
     PIG_ZOMBIE:
         - tool: ANY_SWORD
-          drop: GOLD_SWORD
+          drop: GOLDEN_SWORD
           chance: .25
           message: ["A former warrior king, trapped forever in Hell."]
         - tool: ANY_SWORD
-          drop: GOLD_SPADE
+          drop: GOLDEN_SPADE
           chance: .25
           message: ["An opulent sceptre..."]
         - tool: ANY_SWORD
@@ -70,27 +67,27 @@ otherdrops:
           chance: .25
           message: ["A Trophy...Useless as a tool."]
         - tool: ANY_SWORD
-          drop: GOLD_AXE
+          drop: GOLDEN_AXE
           chance: .25
           message: ["Shiny...But silly..."]
         - tool: ANY_SWORD
-          drop: GOLD_HELMET
+          drop: GOLDEN_HELMET
           chance: .25
           message: ["A crown falls!"]
         - tool: ANY_SWORD
-          drop: GOLD_CHESTPLATE
+          drop: GOLDEN_CHESTPLATE
           chance: .25
           message: ["It's only for show..."]
         - tool: ANY_SWORD
-          drop: GOLD_LEGGINGS
+          drop: GOLDEN_LEGGINGS
           chance: .25
           message: ["I like his style."]
         - tool: ANY_SWORD
-          drop: GOLD_BOOTS
+          drop: GOLDEN_BOOTS
           chance: .25
           message: ["Spit Shined!"]
         - tool: ANY_SWORD
-          drop: GOLD_HOE
+          drop: GOLDEN_HOE
           chance: .25
           message: ["It won't make the food taste any better."]
     SQUID:
@@ -115,11 +112,11 @@ otherdrops:
           chance: 1
           message: ["Hopefully this is not a song from Under The Sea."]
         - tool: ANY
-          drop: BOAT
+          drop: OAK_BOAT
           chance: 2
           message: ["The Kraken's gullet was a lot bigger than perceived."]
         - tool: ANY
-          drop: RAW_FISH
+          drop: COD
           chance: 50
           message: ["Well, waste not, want not."]
     ZOMBIE:

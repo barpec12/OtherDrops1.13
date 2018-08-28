@@ -13,7 +13,6 @@ otherdrops:
         - replacementblock: STONE
           drop: IRON_INGOT
           tool: [STONE_PICKAXE, IRON_PICKAXE, DIAMOND_PICKAXE]
-          
     GOLD_ORE:
         - replacementblock: STONE
           drop: GOLD_INGOT
@@ -24,7 +23,7 @@ otherdrops:
           tool: [IRON_PICKAXE, DIAMOND_PICKAXE]
     LAPIS_ORE:
         - replacementblock: STONE
-          drop: DYE@BLUE
+          drop: LAPIS_LAZULI
           quantity: 4-8
           dropspread: true
           tool: [STONE_PICKAXE, IRON_PICKAXE, DIAMOND_PICKAXE]
@@ -34,10 +33,3 @@ otherdrops:
           quantity: 4-5
           dropspread: true
           tool: [IRON_PICKAXE, DIAMOND_PICKAXE]
-    GLOWING_REDSTONE_ORE:
-        - replacementblock: STONE
-          drop: REDSTONE
-          quantity: 4-5
-          dropspread: true
-          tool: [IRON_PICKAXE, DIAMOND_PICKAXE]
-    

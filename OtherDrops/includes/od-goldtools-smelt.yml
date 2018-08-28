@@ -10,12 +10,32 @@ defaults:
   # permissiongroupexcept: 
   
 otherdrops:
-  LOG: 
+  OAK_LOG: 
+    - tool: GOLD_AXE
+      drop: CHARCOAL
+      chance: 70
+  SPRUCE_LOG: 
+    - tool: GOLD_AXE
+      drop: CHARCOAL
+      chance: 70
+  JUNGLE_LOG: 
+    - tool: GOLD_AXE
+      drop: CHARCOAL
+      chance: 70
+  ACACIA_LOG: 
+    - tool: GOLD_AXE
+      drop: CHARCOAL
+      chance: 70
+  DARK_OAK_LOG: 
+    - tool: GOLD_AXE
+      drop: CHARCOAL
+      chance: 70
+  BIRCH_LOG: 
     - tool: GOLD_AXE
       drop: CHARCOAL
       chance: 70
   SAND:
-    - tool: GOLD_SPADE
+    - tool: GOLDEN_SHOVEL
       drop: GLASS
       chance: 50
       damagetool: 2
