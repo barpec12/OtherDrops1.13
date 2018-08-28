@@ -25,3 +25,4 @@ rsrc/plugin.yml
 /.metadata/
 
 .externalToolBuilders/New_Builder.launch
+lib/spigot-api-1.13.1-R0.1-SNAPSHOT.jar

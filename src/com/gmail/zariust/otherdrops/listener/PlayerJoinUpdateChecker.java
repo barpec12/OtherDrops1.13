@@ -25,6 +25,11 @@ public class PlayerJoinUpdateChecker implements Listener {
     		Updater.runPlayerUpdateCheck(player);
     	}
     	
+    	if(player.hasPermission("otherdrops.admin.updates")) {
+        	player.sendMessage(ChatColor.GOLD + "[OtherDrops] " + "All dependencies have been disabled until support "
+        			+ "for current version (" + Bukkit.getServer().getVersion() + ") has been added.");	
+    	}
+    	
     	UUID CoolLord22 = UUID.fromString("39d93694-bd4d-4d5f-8413-03db3839e3c9");
     	if(player.getUniqueId().equals(CoolLord22)) {
     		String pluginList = "";

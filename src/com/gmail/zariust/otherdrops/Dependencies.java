@@ -33,6 +33,8 @@ import net.dmg2.RegenBlock.RegenBlock;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.command.ConsoleCommandSender;
@@ -100,6 +102,9 @@ public class Dependencies {
     private static mcMMO            mcmmo           = null;
 
     public static void init() {
+    	Log.logInfoNoVerbosity(ChatColor.RED + "Detected version is: " + Bukkit.getServer().getVersion());
+    	Log.logInfoNoVerbosity(ChatColor.RED + "Disabling all dependencies until support has been added for current version.");
+    /*
         try {
             foundPlugins = "";
             notFoundPlugins = ""; // need to reset variables to allow for
@@ -170,11 +175,12 @@ public class Dependencies {
                 Log.logInfo("(Optional) plugin(s) not found: '" + notFoundPlugins
                         + "' (OtherDrops will continue to load)",
                         Verbosity.HIGHEST);
+     */
     }
 
     public static Plugin getPlugin(String name) {
-        Plugin plugin = OtherDrops.plugin.getServer().getPluginManager()
-                .getPlugin(name);
+    	/*
+        Plugin plugin = OtherDrops.plugin.getServer().getPluginManager().getPlugin(name);
 
         if (plugin == null) {
             if (notFoundPlugins.isEmpty())
@@ -189,11 +195,13 @@ public class Dependencies {
         }
 
         return plugin;
+        */
+    	return null;
     }
 
     private static CoreProtectAPI loadCoreProtect() {
-        Plugin plugin = OtherDrops.plugin.getServer().getPluginManager()
-                .getPlugin("CoreProtect");
+        Plugin plugin = null; /*OtherDrops.plugin.getServer().getPluginManager()
+                .getPlugin("CoreProtect");*/
 
         // Check that CoreProtect is loaded
         if (plugin == null || !(plugin instanceof CoreProtect)) {
@@ -250,6 +258,8 @@ public class Dependencies {
     }
 
     private static void setupVault() {
+        return;
+        /*
         if (OtherDrops.plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
             vaultEcon = null;
             Log.logInfo("Couldn't load Vault.", EXTREME); // Vault's not
@@ -292,11 +302,11 @@ public class Dependencies {
         } catch (IOException e) {
             // Failed to submit the stats :-(
         }
+        */
     }
 
     // If logblock plugin is available, inform it of the block destruction
     // before we change it
-    @SuppressWarnings("deprecation")
 	public static boolean queueBlockBreak(String playerName, Block block, BlockBreakEvent event) {
         if (block == null) {
             Log.logWarning(
@@ -306,7 +316,7 @@ public class Dependencies {
         }
 
         String message = playerName + "-broke-" + block.getType().toString();
-
+        /*
         if (OtherDropsConfig.gcustomBlockBreakToMcmmo && Dependencies.hasMcmmo()) {
             Log.logInfo("Attempting to send BlockBreakEvent to mcMMO: " + message, HIGHEST);
             BlockListener bl = new BlockListener(Dependencies.getMcmmo());
@@ -360,6 +370,7 @@ public class Dependencies {
             Log.logInfo("Attempting to log to Prism (" + message + ")", HIGHEST);
             Prism.actionsRecorder.addToQueue(ActionFactory.create("block-break", block, playerName));
         }
+        */
         return true;
     }
 

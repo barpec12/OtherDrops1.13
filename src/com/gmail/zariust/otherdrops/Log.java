@@ -97,8 +97,7 @@ public class Log {
     }
 
     public static void logInfoNoVerbosity(String msg) {
-        Log.logger.info("[" + pluginName + ":"
-                + pluginVersion + "] " + msg);
+    	Bukkit.getConsoleSender().sendMessage("[" + pluginName + ":" + pluginVersion + "] " + msg);
     }
 
     /**

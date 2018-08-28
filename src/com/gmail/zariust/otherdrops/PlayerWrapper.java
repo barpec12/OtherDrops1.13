@@ -1702,4 +1702,10 @@ public class PlayerWrapper implements Player {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
+	@Override
+	public void updateCommands() {
+		throw new UnsupportedOperationException("Not supported yet.");
+		
+	}
+
 }
