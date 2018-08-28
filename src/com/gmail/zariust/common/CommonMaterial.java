@@ -35,7 +35,8 @@ public final class CommonMaterial {
         aMap.put("WOOD_HOE", "WOODEN_HOE");
         aMap.put("WOOD_PICKAXE", "WOODEN_PICKAXE");
         aMap.put("WOOD_SWORD", "WOODEN_SWORD");
-        aMap.put("GOLD_SPADE", "GOLDEN_SPADE");
+        aMap.put("GOLD_SPADE", "GOLDEN_SHOVEL");
+        aMap.put("GOLDEN_SPADE", "GOLDEN_SHOVEL");
         aMap.put("GOLD_AXE", "GOLDEN_AXE");
         aMap.put("GOLD_HOE", "GOLDEN_HOE");
         aMap.put("GOLD_PICKAXE", "GOLDEN_PICKAXE");
