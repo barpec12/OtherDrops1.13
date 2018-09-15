@@ -48,9 +48,9 @@ otherdrops:
       - tool: ALL
         drop: NOTHING
       - tool: ANY_SWORD
-        drop: INK_SACK
+        drop: INK_SAC
       - tool: DAMAGE_FIRE
-        drop: INK_SACK
+        drop: INK_SAC
         chance: 10
 #### Spiders ####
   SPIDER:
@@ -186,7 +186,7 @@ otherdrops:
 
 
 #### Logs are occasionally slimey and sometimes "stick"y :)
-  LOG:
+  OAK_LOG:
       - tool: ALL
         drop: DEFAULT
 
@@ -202,20 +202,19 @@ otherdrops:
         message: ["That log seemed a bit slimey."]
 
 #### Tree leaves drop apples & sticks (birch leaves drop cocoa beans) - very low chance of golden apple
-  LEAVES@GENERIC:
-      - action: LEAF_DECAY
+  OAK_LEAVES:
+      - trigger: LEAF_DECAY
         drop: GOLDEN_APPLE
         chance: 0.006
-      - action: LEAF_DECAY
+      - trigger: LEAF_DECAY
         drop: APPLE
         chance: 0.5
-      - action: LEAF_DECAY
+      - trigger: LEAF_DECAY
         drop: STICK
         chance: 0.5
-      - action: LEAF_DECAY
-        drop: LEAVES
+      - trigger: LEAF_DECAY
+        drop: OAK_LEAVES
         chance: 0.5
-        color: GENERIC
       - tool: ALL
         drop: APPLE
         chance: 2
@@ -226,47 +225,40 @@ otherdrops:
         drop: GOLDEN_APPLE
         chance: 0.02
       - tool: ALL
-        drop: LEAVES
+        drop: OAK_LEAVES
         chance: 1
-        color: GENERIC
-  LEAVES@BIRCH:
-      - action: LEAF_DECAY
+  BIRCH_LEAVES:
+      - trigger: LEAF_DECAY
         drop: STICK
         chance: 2
-      - action: LEAF_DECAY
-        drop: INK_SACK
-        color: BROWN
+      - trigger: LEAF_DECAY
+        drop: COCOA_BEANS
         chance: 3
-      - action: LEAF_DECAY
-        drop: LEAVES
+      - trigger: LEAF_DECAY
+        drop: BIRCH_LEAVES
         chance: 0.5
-        color: BIRCH
       - tool: ALL
         drop: STICK
         chance: 5
       - tool: ALL
-        drop: INK_SACK
-        color: BROWN
+        drop: COCOA_BEANS
         chance: 10
       - tool: ALL
-        drop: LEAVES
+        drop: BIRCH_LEAVES
         chance: 1
-        color: BIRCH
-  LEAVES@REDWOOD:
-      - action: LEAF_DECAY
+  SPRUCE_LEAVES:
+      - trigger: LEAF_DECAY
         drop: STICK
         chance: 2
-      - action: LEAF_DECAY
-        drop: LEAVES
+      - trigger: LEAF_DECAY
+        drop: SPRUCE_LEAVES
         chance: 0.5
-        color: REDWOOD
       - tool: ALL
         drop: STICK
         chance: 5
       - tool: ALL
-        drop: LEAVES
+        drop: SPRUCE_LEAVES
         chance: 1
-        color: REDWOOD
 
 
 ##########
@@ -295,33 +287,21 @@ otherdrops:
         drop: BOOKSHELF
         quantity: 1
 
-# Stairs drop stairs rather than a block
-  WOOD_STAIRS:
-      - tool: ANY_AXE
-        drop: WOOD_STAIRS
-  COBBLESTONE_STAIRS:
-      - tool: ANY_PICKAXE
-        drop: COBBLESTONE_STAIRS
-  BOAT:
-      - tool: ALL
-        drop: BOAT
-
-
 #### Optionals (any tool you want, or ALL - using gold tools gives them more of a use)
   ICE:
       - tool: GOLD_PICKAXE
         drop: ICE
         chance: 50
-  GRASS:
+  GRASS_BLOCK:
       - tool: GOLD_SPADE
-        drop: GRASS
+        drop: GRASS_BLOCK
         chance: 30
   GLOWSTONE:
       - tool: GOLD_PICKAXE
         drop: GLOWSTONE
         chance: 40
 
-  MOB_SPAWNER:
+  SPAWNER:
       - tool: ALL
         drop: NOTHING
         chance: 1

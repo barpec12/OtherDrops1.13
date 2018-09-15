@@ -82,8 +82,7 @@ public class PlayerWrapper implements Player {
     private final ConsoleCommandSender console = Bukkit.getConsoleSender();
     private final boolean              suppress, override;
 
-    public PlayerWrapper(Player player, boolean opOverride,
-            boolean suppressMessages) {
+    public PlayerWrapper(Player player, boolean opOverride, boolean suppressMessages) {
         this.caller = player;
         this.suppress = suppressMessages;
         this.override = opOverride;
@@ -430,8 +429,6 @@ public class PlayerWrapper implements Player {
     }
 
     @Override
-    // TODO: What on earth does this even do? Should it be sent to the console
-    // if suppress is true?
     public void sendRawMessage(String message) {
         caller.sendRawMessage(message);
     }
@@ -1627,26 +1624,22 @@ public class PlayerWrapper implements Player {
 
 	@Override
 	public void hidePlayer(Plugin arg0, Player arg1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-		
+		throw new UnsupportedOperationException("Not supported yet.");		
 	}
 
 	@Override
 	public void removeAchievement(Achievement arg0) {
 		throw new UnsupportedOperationException("Not supported yet.");
-		
 	}
 
 	@Override
 	public void setResourcePack(String arg0, byte[] arg1) {
 		throw new UnsupportedOperationException("Not supported yet.");
-		
 	}
 
 	@Override
 	public void showPlayer(Plugin arg0, Player arg1) {
 		throw new UnsupportedOperationException("Not supported yet.");
-		
 	}
 
 	@Override
@@ -1665,8 +1658,54 @@ public class PlayerWrapper implements Player {
 	}
 
 	@Override
+	public boolean isRiptiding() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public boolean isPersistent() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setPersistent(boolean arg0) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public String getPlayerListFooter() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public String getPlayerListHeader() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setPlayerListFooter(String arg0) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setPlayerListHeader(String arg0) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setPlayerListHeaderFooter(String arg0, String arg1) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
 	public Spigot spigot() {
 		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void updateCommands() {
+		throw new UnsupportedOperationException("Not supported yet.");
+		
 	}
 
 }

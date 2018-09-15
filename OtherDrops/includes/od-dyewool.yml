@@ -6,129 +6,129 @@ defaults:
     trigger: RIGHT_CLICK
 
 otherdrops:
-    35@0:
-      - tool: 351@1
-        replacementblock: 35@14
+    WHITE_WOOL:
+      - tool: ROSE_RED
+        replacementblock: RED_WOOL
         consumetool: 1
-      - tool: 351@2
-        replacementblock: 35@13
+      - tool: CACTUS_GREEN
+        replacementblock: GREEN_WOOL
         consumetool: 1
-      - tool: 351@4
-        replacementblock: 35@11
+      - tool: LAPIS_LAZULI
+        replacementblock: BLUE_WOOL
         consumetool: 1
-      - tool: 351@6
-        replacementblock: 35@9
+      - tool: CYAN_DYE
+        replacementblock: CYAN_WOOL
         consumetool: 1
-      - tool: 351@13
-        replacementblock: 35@2
+      - tool: MAGENTA_DYE
+        replacementblock: MAGENTA_WOOL
         consumetool: 1
-      - tool: 351@11
-        replacementblock: 35@4
+      - tool: DANDELION_YELLOW
+        replacementblock: YELLOW_WOOL
         consumetool: 1
-      - tool: 351@9
-        replacementblock: 35@6
+      - tool: PINK_DYE
+        replacementblock: PINK_WOOL
         consumetool: 1
-      - tool: 351@10
-        replacementblock: 35@5
+      - tool: LIME_DYE
+        replacementblock: LIME_WOOL
         consumetool: 1
-      - tool: 351@12
-        replacementblock: 35@3
+      - tool: LIGHT_BLUE_DYE
+        replacementblock: LIGHT_BLUE_WOOL
         consumetool: 1
-      - tool: 351@3
-        replacementblock: 35@12
+      - tool: COCOA_BEANS
+        replacementblock: BROWN_WOOL
         consumetool: 1
-      - tool: 351@14
-        replacementblock: 35@1
+      - tool: ORANGE_DYE
+        replacementblock: ORANGE_WOOL
         consumetool: 1
-      - tool: 351@5
-        replacementblock: 35@10
+      - tool: PURPLE_DYE
+        replacementblock: PURPLE_WOOL
         consumetool: 1
-      - tool: 351@7
-        replacementblock: 35@8
+      - tool: LIGHT_GRAY_DYE
+        replacementblock: LIGHT_GRAY_WOOL
         consumetool: 1
-      - tool: 351@8
-        replacementblock: 35@7
+      - tool: GRAY_DYE
+        replacementblock: GRAY_WOOL
         consumetool: 1
-      - tool: 351@0
-        replacementblock: 35@15
+      - tool: INK_SAC
+        replacementblock: BLACK_WOOL
         consumetool: 1
-    35@14:
-      - tool: 351@11
-        replacementblock: 35@1
+    RED_WOOL:
+      - tool: DANDELION_YELLOW
+        replacementblock: ORANGE_WOOL
         consumetool: 1
-      - tool: 351@4
-        replacementblock: 35@10
+      - tool: LAPIS_LAZULI
+        replacementblock: PURPLE_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@6
+      - tool: BONE_MEAL
+        replacementblock: PINK_WOOL
         consumetool: 1
-    35@13:
-      - tool: 351@4
-        replacementblock: 35@9
+    GREEN_WOOL:
+      - tool: LAPIS_LAZULI
+        replacementblock: CYAN_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@5
+      - tool: BONE_MEAL
+        replacementblock: LIME_WOOL
         consumetool: 1
-    35@11:
-      - tool: 351@2
-        replacementblock: 35@9
+    BLUE_WOOL:
+      - tool: CACTUS_GREEN
+        replacementblock: CYAN_WOOL
         consumetool: 1
-      - tool: 351@1
-        replacementblock: 35@10
+      - tool: ROSE_RED
+        replacementblock: PURPLE_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@3
+      - tool: BONE_MEAL
+        replacementblock: LIGHT_BLUE_WOOL
         consumetool: 1
-    35@9:
-      - tool: 351@15
-        replacementblock: 35@0
+    CYAN_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@2:
-      - tool: 351@15
-        replacementblock: 35@0
+    MAGENTA_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@4:
-      - tool: 351@1
-        replacementblock: 35@1
+    YELLOW_WOOL:
+      - tool: ROSE_RED
+        replacementblock: ORANGE_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@0
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@6:
-      - tool: 351@5
-        replacementblock: 35@2
+    PINK_WOOL:
+      - tool: PURPLE_DYE
+        replacementblock: MAGENTA_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@0
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@5:
-      - tool: 351@15
-        replacementblock: 35@0
+    LIME_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@3:
-      - tool: 351@15
-        replacementblock: 35@0
+    LIGHT_BLUE_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@1:
-      - tool: 351@15
-        replacementblock: 35@0
+    ORANGE_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@10:
-      - tool: 351@9
-        replacementblock: 35@2
+    PURPLE_WOOL:
+      - tool: PINK_DYE
+        replacementblock: MAGENTA_WOOL
         consumetool: 1
-      - tool: 351@15
-        replacementblock: 35@0
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@8:
-      - tool: 351@15
-        replacementblock: 35@0
+    LIGHT_GRAY_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: WHITE_WOOL
         consumetool: 1
-    35@7:
-      - tool: 351@15
-        replacementblock: 35@8
+    GRAY_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: LIGHT_GRAY_WOOL
         consumetool: 1
-    35@15:
-      - tool: 351@15
-        replacementblock: 35@7
+    BLACK_WOOL:
+      - tool: BONE_MEAL
+        replacementblock: GRAY_WOOL
         consumetool: 1

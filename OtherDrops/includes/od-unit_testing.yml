@@ -7,10 +7,10 @@ defaults:
 # test ANY_ITEM somewhere, test "tool: DIAMOND_SWORD@!DAMAGE_ALL" somewhere
 
 otherdrops:
-  GRASS:
+  GRASS_BLOCK:
     # Test block drop & message
     - tool: HANDS # tool ALL is the default but make sure it works if it's there too
-      drop: DIAMOND_SWORD@!DAMAGE_ALL#5~Butterfly # test item drop and enchantment drops (with LoreName "Butterfly")
+      drop: DIAMOND_SWORD@!SHARPNESS#5~Butterfly # test item drop and enchantment drops (with LoreName "Butterfly")
       message: "&Cstep 1a)&F %q enchanted diamond sword should have dropped, please wait a moment for a pig to drop." # test string out of list
     - tool: ALL
     # test messages & color
@@ -21,7 +21,7 @@ otherdrops:
       delay: 40
       message: ["&Cstep 1b)&F A pig should have dropped, please kill it."]
       
-  PIG@UNSADDLED:
+  PIG@!UNSADDLED:
     - message: "&Cstep 2a)&F Money test - balance will show, money drop and balance shown again."
       command: "/money"  # test money, balance below money drop
 
@@ -33,7 +33,7 @@ otherdrops:
     - delay: 20
       command: "/money"  # test money, balance after money drop (command for iConomy)
     
-    - toolexcept: GOLD_SWORD
+    - toolexcept: GOLDEN_SWORD
       drop: SHEEP
       delay: 60
       message: ["&Cstep 2c)&F Now please kill the sheep with the diamond sword."]
@@ -50,26 +50,26 @@ otherdrops:
       
   
   CREATURE_SHEEP:
-    - drop: [BLAZE_ROD, GOLD_HOE]
+    - drop: [BLAZE_ROD, GOLDEN_HOE]
       time: night
       message: ["&Cstep 3)&F Night detected, here's a blaze-rod & gold_hoe, please right-click with the blaze-rod."]
     - time: DAY
       message: "&Cstep 3 failed! Oops - it's still day - perhaps 'command:' on the pig didn't work?"
 
   ANY_BLOCK:
-    - action: RIGHT_CLICK
+    - trigger: RIGHT_CLICK
       tool: BLAZE_ROD
       command: "/!*time set 6000"
       time: night
       message: "&Cstep 3.5a)&F Time should now be day, break some leaves with the hoe (or left-click a block for night)"
 
-    - action: LEFT_CLICK
+    - trigger: LEFT_CLICK
       tool: BLAZE_ROD
       command: "/!*time set 18000"
       time: day
       message: "&Cstep 3.5b)&F Time should now be night, right click on a block to make it day and break leaves with the gold_hoe."
 
-  LEAVES:
+  OAK_LEAVES:
 
     - tool: ANY_HOE
       drop: GOLD_APPLE
@@ -86,11 +86,10 @@ otherdrops:
       drop: NOTHING
       message: "&Cstep 4a)&F Hoe detected - please wait a few seconds"
 
-    - dropgroup: test
-      tool: GOLD_HOE
-      message: ["&Cstep 4b)&F Congrats, gold hoe detected, event test: you should see lightning with a short delay (60)."]
+    - tool: GOLD_HOE
+      message: "&cstep 4b)&f Congrats, gold hoe detected, event test: you should see lightning with a short delay (60)."
+      dropgroup: test
       drops:
-# test event - lightning
         - events: LIGHTNING
           message: ["&Cstep 4c)&F Lightning triggered."]
           delay: 60
@@ -105,14 +104,14 @@ otherdrops:
 
       
   GLOWSTONE:
-    - drop: PIG@SADDLED
+    - drop: PIG@!SADDLED
       message: "&Cstep 5)&F Saddled pig should drop, please kill it."
     
-  PIG@SADDLED:
-    - drop: BOAT
+  PIG@!SADDLED:
+    - drop: OAK_BOAT
       message: "&Cstep 6)&F Boat should drop, please place on the ground and destroy it."
     
-  BOAT:
+  OAK_BOAT:
     - drop: [MINECART, TRACKS]
       message: "&Cstep 7)&F Minecart (and tracks) should drop, please place the track, place the minecart on top and destroy it."
 
@@ -122,15 +121,15 @@ otherdrops:
     
 
   SNOWMAN:
-    - action: LEFT_CLICK
+    - trigger: LEFT_CLICK
       drop: DIAMOND
-    - action: RIGHT_CLICK
+    - trigger: RIGHT_CLICK
       drop: DIAMOND_PICKAXE
       replacementblock: DIAMOND_ORE
       message: "&Cstep 9)&F You should see diamond ore and a pickaxe - break the ore."
 
   DIAMOND_ORE:
-    - drop: MONSTER_EGG@96  # spawns a mooshroom which (as at CB1772) is still detected as a cow upon death
+    - drop: MOOSHROOM_SPAWN_EGG # spawns a mooshroom which (as at CB1772) is still detected as a cow upon death
       message: "&Cstep 10)&F You should see an egg (Minecraft 1.1 only), pick it up and rightclick (should get a Mooshroom)."
 
 
@@ -143,6 +142,6 @@ otherdrops:
 
   MOOSHROOM:  # testing mooshroom alias for MUSHROOM_COW
     - tool: ALL
-      drop: 116  # enchantment table
+      drop: ENCHANTING_TABLE  # enchantment table
       message: "&CFinal step)&F Mooshroom killed - dropping enchantment table via ID value."
 

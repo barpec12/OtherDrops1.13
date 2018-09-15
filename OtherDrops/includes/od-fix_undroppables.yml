@@ -11,9 +11,9 @@ defaults:
 otherdrops:
     # Glassdrop - glass drops glass, however hitting with hands will hurt
     GLASS:
-        &glassbreak  # create an alias for this config to use in THIN_GLASS
+        &glassbreak  # create an alias for this config to use in GLASS_PANE
         - tool: ANY  # with any tool...
-          drop: THIS # ...drop this block (this is so that we can use the same alias for THIN_GLASS)
+          drop: THIS # ...drop this block (this is so that we can use the same alias for GLASS_PANE)
 
           # 50% chance that using bare hands to break glass will hurt
         - tool: AIR
@@ -23,7 +23,7 @@ otherdrops:
           chance: 50%
 
           # 50% chance that using either glass or thin glass will hurt the player
-        - tool: [GLASS, THIN_GLASS]
+        - tool: [GLASS, GLASS_PANE]
           drop: NOTHING             # note: glass will be dropped as per above "ANY" block
           damageattacker: 1-2
           message: "Ouch! The glass shatters in your hand."
@@ -33,37 +33,17 @@ otherdrops:
         - tool: ANY
           toolexcept: GOLD_PICKAXE
           drop: NOTHING
-          exclusive: 1  # this means that the drops above will not occur
+          flags: UNIQUE
           chance: 10%
           message: "Aw, the glass broke..."
 
-    THIN_GLASS:
+    GLASS_PANE:
         *glassbreak  # use same config as per GLASS
 
     # Use an axe to get back a bookshelf
     BOOKSHELF:
         - tool: ANY_AXE
           drop: BOOKSHELF
-          
-    # Stairs drop stairs rather than a block
-    WOOD_STAIRS:
-        - tool: ANY_AXE
-          drop: WOOD_STAIRS
-    COBBLESTONE_STAIRS:
-        - tool: ANY_PICKAXE
-          drop: COBBLESTONE_STAIRS
-    BRICK_STAIRS:
-        - tool: ANY_PICKAXE
-          drop: BRICK_STAIRS
-    SMOOTH_STAIRS:
-        - tool: ANY_PICKAXE
-          drop: SMOOTH_STAIRS
-    
-    # Fix the boat drop to drop a full boat (like minecarts)
-    BOAT:
-        - tool: ALL
-          drop: BOAT
-          
           
     # Allow endermen to drop the carried block
     ENDERMAN:

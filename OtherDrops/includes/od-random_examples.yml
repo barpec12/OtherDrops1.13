@@ -4,7 +4,7 @@ otherdrops:
 # gravel with a golden shovel
 ###
         GRAVEL:
-            - tool: GOLD_SPADE
+            - tool: GOLDEN_SHOVEL
               drop: SOUL_SAND
               quantity: 1
               damage: 4
@@ -15,10 +15,6 @@ otherdrops:
 # specify both
 ###
         REDSTONE_ORE:
-            - tool: GOLD_PICKAXE
-              drop: GLOWSTONE_DUST
-              quantity: 4
-        GLOWING_REDSTONE_ORE:
             - tool: GOLD_PICKAXE
               drop: GLOWSTONE_DUST
               quantity: 4
@@ -33,7 +29,32 @@ otherdrops:
 ##########
 # The leaves are now diamonds! (when punched)
 ###
-        LEAVES:
+        OAK_LEAVES:
+            - tool: AIR
+              drop: DIAMOND
+              quantity: 1
+              chance: 33
+        SPRUCE_LEAVES:
+            - tool: AIR
+              drop: DIAMOND
+              quantity: 1
+              chance: 33
+        JUNGLE_LEAVES:
+            - tool: AIR
+              drop: DIAMOND
+              quantity: 1
+              chance: 33
+        DARK_OAK_LEAVES:
+            - tool: AIR
+              drop: DIAMOND
+              quantity: 1
+              chance: 33
+        ACACIA_LEAVES:
+            - tool: AIR
+              drop: DIAMOND
+              quantity: 1
+              chance: 33
+        BIRCH_LEAVES:
             - tool: AIR
               drop: DIAMOND
               quantity: 1
@@ -41,8 +62,8 @@ otherdrops:
 ##########
 # Generic leaves drop apples (on decay and harvest, higher chance for harvesting manually)
 ###
-        LEAVES@GENERIC:
-            - action: LEAF_DECAY
+        OAK_LEAVES:
+            - trigger: LEAF_DECAY
               drop: APPLE
               quantity: 1
               chance: 5
@@ -96,9 +117,9 @@ otherdrops:
 ## Unfortunately the lighting also zaps the diamonds :/  (will fix if I can) 
 ##########
 #
-#       GRASS:
 ## find money in the grass only during a clear day (can't see as well as
 ## at night or raining)
+        GRASS:
             - tool: ALL
               drop: MONEY
               quantity: 2

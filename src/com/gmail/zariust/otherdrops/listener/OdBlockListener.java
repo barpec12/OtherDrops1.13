@@ -35,8 +35,9 @@ import com.gmail.zariust.otherdrops.OtherDrops;
 import com.gmail.zariust.otherdrops.OtherDropsConfig;
 import com.gmail.zariust.otherdrops.event.OccurredEvent;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
-import com.sk89q.worldguard.protection.flags.DefaultFlag;
+import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 
 public class OdBlockListener implements Listener {
@@ -54,11 +55,11 @@ public class OdBlockListener implements Listener {
             Vector pt = new Vector(loc.getX(), loc.getY(), loc.getZ());
 
             // Get the region manager for this world
-            RegionManager regionManager = Dependencies.getWorldGuard().getRegionContainer().get(block.getWorld());
+            RegionManager regionManager = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer().get((World) block.getWorld());
             // Get the "set" for this location
             ApplicableRegionSet set = regionManager.getApplicableRegions(pt);
             // If leaf decay is not allowed, just exit this function
-            if (!set.testState(null, DefaultFlag.LEAF_DECAY)) {
+            if (!set.testState(null, Flags.LEAF_DECAY)) {
                 Log.logWarning("Leaf decay denied - worldguard protected region.");
                 return false;
             }

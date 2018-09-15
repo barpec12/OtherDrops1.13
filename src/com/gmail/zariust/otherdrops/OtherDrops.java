@@ -107,7 +107,7 @@ public class OtherDrops extends JavaPlugin {
         writeNames("Horse.Color", Horse.Color.class);
         writeNames("Horse.Style", Horse.Style.class);
 
-        File folder = new File("plugins" + File.separator + "OtherDrops");
+        File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
         BufferedWriter out = null;
         // Have tried to refactor this out however enchantment class doesn't see to be an true enum so doesn't work with
         // the writeNames method
@@ -132,6 +132,20 @@ public class OtherDrops extends JavaPlugin {
             for (PotionEffectType mat : PotionEffectType.values()) {
                 if (mat != null)
                     out.write(mat.getName().toString() + "\n");
+            }
+            out.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            File configFile = new File(folder.getAbsolutePath() + File.separator + "known_lists" + File.separator + "MaterialList" + ".txt");
+            configFile.getParentFile().mkdirs();
+            configFile.createNewFile();
+            out = new BufferedWriter(new FileWriter(configFile));
+            for (Material mat : Material.values()) {
+                if (mat != null)
+                    out.write(mat.name().toString() + "\n");
             }
             out.close();
         } catch (IOException exception) {
@@ -179,13 +193,14 @@ public class OtherDrops extends JavaPlugin {
 
         try {
             BufferedWriter out = null;
-            File folder = new File("plugins" + File.separator + "OtherDrops");
+            File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
             File configFile = new File(folder.getAbsolutePath() + File.separator + "known_lists" + File.separator + filename + ".txt");
             configFile.getParentFile().mkdirs();
             configFile.createNewFile();
             out = new BufferedWriter(new FileWriter(configFile));
             Collections.sort(list);
-            out.write(list.toString());
+            for(String mat : list)
+            	out.write(mat + "\n");
             out.close();
         } catch (IOException exception) {
             exception.printStackTrace();
