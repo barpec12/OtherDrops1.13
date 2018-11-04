@@ -19,6 +19,7 @@ package com.gmail.zariust.otherdrops.listener;
 import static com.gmail.zariust.common.Verbosity.HIGHEST;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -33,12 +34,11 @@ import com.gmail.zariust.otherdrops.Log;
 import com.gmail.zariust.otherdrops.OtherDrops;
 import com.gmail.zariust.otherdrops.OtherDropsConfig;
 import com.gmail.zariust.otherdrops.event.OccurredEvent;
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.Flags;
-import com.sk89q.worldguard.protection.flags.StateFlag;
-import com.sk89q.worldguard.protection.regions.RegionContainer;
-import com.sk89q.worldguard.protection.regions.RegionQuery;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 
 public class OdBlockListener implements Listener {
     private final OtherDrops parent;
@@ -49,14 +49,17 @@ public class OdBlockListener implements Listener {
 
     public Boolean checkWorldguardLeafDecayPermission(Block block) {
         if (Dependencies.hasWorldGuard()) {
-            // Get the region manager for this world
-        	RegionContainer container = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer();
-            RegionQuery query = container.createQuery();
+            // WORLDGUARD: check to see if leaf decay is allowed...
+            // Need to convert the block (it's location) to a WorldGuard Vector
+            Location loc = block.getLocation();
+            Vector pt = new Vector(loc.getX(), loc.getY(), loc.getZ());
 
+            // Get the region manager for this world
+            RegionManager regionManager = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer().get((World) block.getWorld());
             // Get the "set" for this location
-            ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(block.getLocation()));
+            ApplicableRegionSet set = regionManager.getApplicableRegions(pt);
             // If leaf decay is not allowed, just exit this function
-            if (!set.testState(null, new StateFlag[] { Flags.LEAF_DECAY })) {
+            if (!set.testState(null, Flags.LEAF_DECAY)) {
                 Log.logWarning("Leaf decay denied - worldguard protected region.");
                 return false;
             }

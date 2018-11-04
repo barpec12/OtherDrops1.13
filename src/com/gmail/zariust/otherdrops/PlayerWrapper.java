@@ -28,12 +28,10 @@ import org.bukkit.SoundCategory;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
-import org.bukkit.FluidCollisionMode;
 import org.bukkit.GameMode;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Note;
 import org.bukkit.Particle;
 import org.bukkit.Server;
@@ -46,7 +44,6 @@ import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.command.CommandSender;
@@ -78,8 +75,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.util.BoundingBox;
-import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 public class PlayerWrapper implements Player {
@@ -1711,61 +1706,6 @@ public class PlayerWrapper implements Player {
 	public void updateCommands() {
 		throw new UnsupportedOperationException("Not supported yet.");
 		
-	}
-
-	@Override
-	public boolean discoverRecipe(NamespacedKey arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public int discoverRecipes(Collection<NamespacedKey> arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public boolean undiscoverRecipe(NamespacedKey arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public int undiscoverRecipes(Collection<NamespacedKey> arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public BlockFace getFacing() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public Block getTargetBlockExact(int arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public Block getTargetBlockExact(int arg0, FluidCollisionMode arg1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public RayTraceResult rayTraceBlocks(double arg0) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public RayTraceResult rayTraceBlocks(double arg0, FluidCollisionMode arg1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public BoundingBox getBoundingBox() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public int getClientViewDistance() {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 }
