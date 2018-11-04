@@ -144,14 +144,15 @@ public class SimpleData implements Data, RangeableData {
             switch (mat) {
             // Simple enum-based blocks
             case WHEAT:
-            case CARROT:
-            case POTATO:
+            case CARROTS:
+            case POTATOES:
+            case BEETROOTS:
                 return CropState.getByData((byte) data).toString();
                 // Blocks whose only attribute is direction
             case LADDER:
                 Ladder ladder = new Ladder(mat, (byte) data);
                 return ladder.getFacing().toString();
-            case PUMPKIN:
+            case CARVED_PUMPKIN:
             case JACK_O_LANTERN:
                 Pumpkin pumpkin = new Pumpkin(mat, (byte) data);
                 return pumpkin.getFacing().toString();
@@ -315,8 +316,9 @@ public class SimpleData implements Data, RangeableData {
                 ret = data;
             break;
         case WHEAT:
-        case CARROT:
-        case POTATO:
+        case CARROTS:
+        case POTATOES:
+        case BEETROOTS:
             CropState crops = CropState.valueOf(state);
             if (crops != null)
                 ret = crops.getData();

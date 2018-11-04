@@ -5,6 +5,8 @@ import static com.gmail.zariust.common.Verbosity.HIGHEST;
 import static com.gmail.zariust.common.Verbosity.NORMAL;
 import static java.lang.Math.max;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -12,7 +14,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -203,7 +204,7 @@ public class DropRunner implements Runnable {
             
             if(getsBlockBeingChanged.getMaterial() == Material.FARMLAND && 
             		(tempReplace.getMaterial() == Material.WHEAT | tempReplace.getMaterial() == Material.BEETROOTS 
-            		|| tempReplace.getMaterial() == Material.CARROT || tempReplace.getMaterial() == Material.POTATO 
+            		|| tempReplace.getMaterial() == Material.CARROTS || tempReplace.getMaterial() == Material.POTATOES 
             		|| tempReplace.getMaterial() == Material.MELON_STEM || tempReplace.getMaterial() == Material.PUMPKIN_STEM)) {
             	ifFarmlandUpOneBlock = new BlockTarget(toReplace.getLocation().add(0, 1, 0).getBlock());
             	ifFarmlandUpOneBlock.setTo(tempReplace);
@@ -369,13 +370,6 @@ public class DropRunner implements Runnable {
     
 	public boolean checkIfNoPerms(Player who, Location location, OccurredEvent theEvent) {
     	boolean canBuild = true;
-
-    	if(Dependencies.hasWorldGuard()) {
-    		if(OtherDropsConfig.globalenablewgmatching) {
-    			if(!Dependencies.getWorldGuard().createProtectionQuery().testBlockPlace(player, location, location.getBlock().getType()))
-    				canBuild = false;
-    		}
-    	}
 		
 		if(Dependencies.hasTowny())
 			if(!PlayerCacheUtil.getCachePermission(who, location, 3, ActionType.DESTROY) || !PlayerCacheUtil.getCachePermission(who, location, 3, ActionType.SWITCH) 
@@ -497,8 +491,13 @@ public class DropRunner implements Runnable {
                     Bukkit.getServer().dispatchCommand(from, command);
                 }
                 catch (CommandException ex) {
-                	CraftPlayer from2 = ((CraftPlayer) who);
-                    Bukkit.getServer().dispatchCommand(from2, command);
+                	try {
+						Method getHandle = who.getClass().getMethod("getHandle");
+						Object nmsPlayer = getHandle.invoke(who);
+	                    Bukkit.getServer().dispatchCommand((CommandSender) nmsPlayer, command);
+					} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+						e.printStackTrace();
+					}
                 }
             }
         }
