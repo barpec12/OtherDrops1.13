@@ -127,7 +127,6 @@ public final class CommonMaterial {
         aMap.put("redapple", "apple");
         aMap.put("sticks", "stick");
 
-        aMap.put("grass", "grassblock");
         aMap.put("longgrass", "tall_grass");
         aMap.put("wildgrass", "tall_grass");
 
@@ -148,7 +147,6 @@ public final class CommonMaterial {
         aMap.put("enderstone", "end_stone");
 
         aMap.put("rawporkchop", "porkchop");
-        aMap.put("egg", "chickenegg");
         aMap.put("netherwarts", "nether_wart");
 
         aMap.put("cauldron_block", "cauldron");
