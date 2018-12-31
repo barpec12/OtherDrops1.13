@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.TreeType;
@@ -86,6 +87,7 @@ public class OtherDrops extends JavaPlugin {
     public void onEnable() {
         initLogger();
         registerParameters();
+        checkFolders();
         initConfig();
         registerCommands();
         if (OtherDropsConfig.exportEnumLists)
@@ -93,6 +95,40 @@ public class OtherDrops extends JavaPlugin {
         Log.logInfo("OtherDrops loaded.");
         if (OtherDropsConfig.globalUpdateChecking)
         	Updater.runUpdateCheck();
+    }
+
+    private void checkFolders() {
+    	File oldFolder = new File("plugins" + File.separator + "OtherDrops_1.13");
+    	if(oldFolder.exists()) {
+    	    Log.logWarning("Detected old directory plugins/OtherDrops_1.13! Copying directory to OtherDrops...");
+        	File srcDir = new File("plugins" + File.separator + "OtherDrops_1.13");
+        	File destDir = new File("plugins" + File.separator + "OtherDrops");
+        	
+        	try {
+        	    FileUtils.copyDirectory(srcDir, destDir);
+        	    Log.logWarning("Successfully copied files. Deleting old directory plugins/OtherDrops_1.13!");
+        	    deleteDirectories(srcDir);
+        	} catch (IOException e) {
+        	    e.printStackTrace();
+        	}
+    	}
+    }
+    
+    private void deleteDirectories(File dir) {
+    	if(!dir.isDirectory()) 
+    		dir.delete();
+
+
+    	if(dir.isDirectory()) {
+    		if(dir.list().length == 0) 
+    			dir.delete();
+
+    		for(File temp : dir.listFiles()) {
+    			deleteDirectories(temp);
+    			if(dir.list().length == 0)
+        			dir.delete();
+    		}
+    	}
     }
 
     // Exports known enum lists to text files as this can assist in viewing what values are available to use and/or new values that have
@@ -111,7 +147,7 @@ public class OtherDrops extends JavaPlugin {
         writeNames("Horse.Style", Horse.Style.class);
         writeNames("Rabbit.Type", Rabbit.Type.class);
 
-        File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
+        File folder = new File("plugins" + File.separator + "OtherDrops");
         BufferedWriter out = null;
         // Have tried to refactor this out however enchantment class doesn't see to be an true enum so doesn't work with
         // the writeNames method
@@ -197,7 +233,7 @@ public class OtherDrops extends JavaPlugin {
 
         try {
             BufferedWriter out = null;
-            File folder = new File("plugins" + File.separator + "OtherDrops_1.13");
+            File folder = new File("plugins" + File.separator + "OtherDrops");
             File configFile = new File(folder.getAbsolutePath() + File.separator + "known_lists" + File.separator + filename + ".txt");
             configFile.getParentFile().mkdirs();
             configFile.createNewFile();
