@@ -81,8 +81,10 @@ import com.gmail.zariust.otherdrops.subject.PlayerSubject;
 import com.gmail.zariust.otherdrops.subject.ProjectileAgent;
 import com.gmail.zariust.otherdrops.subject.Target;
 import com.gmail.zariust.otherdrops.subject.VehicleTarget;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldguard.internal.platform.WorldGuardPlatform;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 import org.bukkit.Material;
@@ -803,7 +805,7 @@ public class OccurredEvent extends AbstractDropEvent implements Cancellable {
         if (!Dependencies.hasWorldGuard())
             return;
         WorldGuardPlatform wgPlatform = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform();
-		Map<String, ProtectedRegion> regionMap = wgPlatform.getRegionContainer().get(wgPlatform.getWorldByName(world.getName())).getRegions();
+		Map<String, ProtectedRegion> regionMap = wgPlatform.getRegionContainer().get(BukkitAdapter.adapt(world)).getRegions();
         BlockVector3 vec = (BlockVector3.at(location.getX(), location.getY(), location.getZ()));
         for (String region : regionMap.keySet()) {
             if (regionMap.get(region).contains(vec))
